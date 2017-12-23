@@ -1,0 +1,13 @@
+Package: prrd
+Type: Package
+Title: Parallel Runs of Reverse Depends
+Version: 0.0.1
+Date: 2017-12-18
+Author: Dirk Eddelbuettel
+Maintainer: Dirk Eddelbuettel <edd@debian.org>
+Description: Reverse depends for a given package are queued such that multiple
+ workers can run the tests in parallel.
+License: GPL (>= 2)
+Imports: config
+Suggests: liteq, docopt, data.table
+RoxygenNote: 6.0.1
