@@ -1,2 +1,2 @@
 exportPattern("^[[:alpha:]]+")
-import(config)
+importFrom("config", "get")

@@ -3,12 +3,15 @@
 \name{getDataDirectory}
 \alias{getDataDirectory}
 \alias{getQueueFile}
+\alias{getConfig}
 \title{Create a data directory}
 \usage{
 getDataDirectory(package, date = format(Sys.Date()), path = ".",
   sep = "_")
 
 getQueueFile(package, date = format(Sys.Date()), path = ".", sep = "_")
+
+getConfig()
 }
 \arguments{
 \item{package}{Character variable providing the package name.}

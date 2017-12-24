@@ -25,6 +25,7 @@ getQueueFile <- function(package, date=format(Sys.Date()), path=".", sep="_" ) {
     queue
 }
 
+##' @rdname getDataDirectory
 getConfig <- function() {
     candidates <- c("~/.R/prrd.yaml", "~/.prrd.yaml", "/etc/R/prrd.yaml")
     for (f in candidates) {
