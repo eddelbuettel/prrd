@@ -8,6 +8,7 @@
 
 	* R/db.R (getConnection, createTable, insertRow): Database helper
 	functions
+	* man/getConnection.Rd: Minimal documentation
 
 	* inst/scripts/watchDB.sh: Minimal db watcher
 
