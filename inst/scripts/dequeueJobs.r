@@ -27,6 +27,7 @@ See http://dirk.eddelbuettel.com/code/...TBD.... for more information.\n")
 
 pkg <- opt$PACKAGE
 
+check()                                 # checks for xvfb-run-safe
 r <- character()
 r["CRAN"] <- "http://cran.rstudio.com"
 r["BioCsoft"] <- "http://www.bioconductor.org/packages/release/bioc"

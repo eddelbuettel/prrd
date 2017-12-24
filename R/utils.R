@@ -2,6 +2,8 @@
 ##' additional optional arguments which can be used to store test
 ##' meta-data and results.
 ##'
+##' Additional helper functions get particular directories, config settings or
+##' check some assumptions about files in \code{PATH} and alike,
 ##' @title Create a data directory
 ##' @param package Character variable providing the package name.
 ##' @param date Optional character variable describing a date, default

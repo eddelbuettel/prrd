@@ -2,7 +2,9 @@
 
 	* xvfb-run-safe: Added to inst/scripts
 
-	* utils.R (getConfig): Added @rdname
+	* R/utils.R (getConfig): Added @rdname
+
+	* R/checks.R (check): Simple sanity checker
 
 2017-12-23  Dirk Eddelbuettel  <edd@debian.org>
 
