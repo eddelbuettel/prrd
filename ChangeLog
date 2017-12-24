@@ -1,0 +1,16 @@
+2017-12-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* xvfb-run-safe: Added to inst/scripts
+
+	* utils.R (getConfig): Added @rdname
+
+2017-12-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: First committed version
+	* inst/scripts/dequeueJobs.R: Idem
+	* inst/scripts/enqueueJobs.R: Idem
+	* local/setup.R: Idem
+	* man/getDataDirectory.Rd: Idem
+	* NAMESPACE: Idem
+	* prrd-package: Idem
+	* R/utils.R: Idem
