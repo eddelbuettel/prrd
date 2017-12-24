@@ -6,6 +6,11 @@
 
 	* R/checks.R (check): Simple sanity checker
 
+	* R/db.R (getConnection, createTable, insertRow): Database helper
+	functions
+
+	* inst/scripts/watchDB.sh: Minimal db watcher
+
 2017-12-23  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION: First committed version

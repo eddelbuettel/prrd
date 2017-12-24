@@ -1,2 +1,3 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("config", "get")
+import(DBI, RSQLite)

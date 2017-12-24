@@ -5,6 +5,7 @@ suppressMessages({
     library(liteq)
     library(docopt)
     library(data.table)
+    library(crayon)
 })
 
 ## configuration for docopt
@@ -28,13 +29,14 @@ See http://dirk.eddelbuettel.com/code/...TBD.... for more information.\n")
 pkg <- opt$PACKAGE
 
 check()                                 # checks for xvfb-run-safe
-r <- character()
-r["CRAN"] <- "http://cran.rstudio.com"
-r["BioCsoft"] <- "http://www.bioconductor.org/packages/release/bioc"
-options(repos = r)
+
+## setting repos now in local/setup.R
 
 db <- getQueueFile(pkg)
 q <- ensure_queue("jobs", db = db)
+
+con <- getConnection(db)                # we re-use the liteq db for our results
+createTable(con)
 
 pid <- Sys.getpid()
 hostname <- Sys.info()[["nodename"]]
@@ -48,16 +50,15 @@ if (!is.null(cfg <- getConfig())) {
     if ("verbose" %in% names(cfg)) verbose <- cfg$verbose == "true"
     if ("debug" %in% names(cfg)) debug <- cfg$debug == "true"
 }
-res <- data.frame(pkg=pkg, res=NA, stringsAsFactors=FALSE)
-good <- bad <- pi <- 0
-set.seed(42)
+
+good <- bad <- 0
 
 ## work down messages, if any
 while (!is.null(msg <- try_consume(q))) {
-    pi <- pi + 1
     starttime <- Sys.time()
-#    print(msg)
-#    print(str(msg))
+    if (debug) print(msg)
+
+    cat(msg$message, "started at", format(starttime), "")
 
     tok <- strsplit(msg$message, "_")[[1]]      # now have package and version in tok[1:2]
     pkgfile <- paste0(msg$message, ".tar.gz")
@@ -80,15 +81,23 @@ while (!is.null(msg <- try_consume(q))) {
                  pkgfile, ".log", sep="")
     if (debug) print(cmd)
     rc <- system(cmd)
+    if (debug) print(rc)
 
-    res[pi, ] <- c(tok[1], rc)
+    setwd(cwd)
+    endtime <- Sys.time()
+
     if (rc == 0) {
-        good <<- good + 1
+        ##if (verbose) cat("Success with", tok[1], "\n")
+        good <- good + 1
+        cat(green("success"), "at", format(endtime), good, "/", bad, "\n")
+        ack(msg)
     } else {
-        bad <<- bad + 1
+        ##if (verbose) cat("Nope with", tok[1], "\n")
+        bad <- bad + 1
+        cat(red("failure"), "at", format(endtime), good, "/", bad, "\n")
+        nack(msg)
     }
 
-    endtime <- Sys.time()
     row <- data.frame(package=tok[1],
                       version=tok[2],
                       result=rc,
@@ -97,28 +106,9 @@ while (!is.null(msg <- try_consume(q))) {
                       runtime=as.numeric(difftime(endtime, starttime, units="secs")),
                       runner=pid,
                       host=hostname)
-    print(row)
+    if (debug) print(row)
 
-    setwd(cwd)
-
-
-    #sqlcmd <- "insert into results values(", tok[1], tok[2], rc,
-    ## set timeout
-    ##   dbExecute(con, "PRAGMA busy_timeout = 1000")
-    ## set transaction lock equiv
-    ##   dbExecute(con, "BEGIN EXCLUSIVE")
-    ## run insert
-    ## commit
-    ##   db_execute(con, "COMMIT")
-
-    if (rc == 0) {
-        cat("Success with", tok[1], "\n")
-        ack(msg)
-    } else {
-        cat("Nope with", tok[1], "\n")
-        nack(msg)
-    }
+    insertRow(con, row)
 }
 requeue_failed_messages(q)
 print(list_messages(q))
-print(res)

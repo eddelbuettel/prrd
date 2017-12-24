@@ -8,6 +8,6 @@ Maintainer: Dirk Eddelbuettel <edd@debian.org>
 Description: Reverse depends for a given package are queued such that multiple
  workers can run the tests in parallel.
 License: GPL (>= 2)
-Imports: config
+Imports: config, DBI, RSQLite
 Suggests: liteq, docopt, data.table
 RoxygenNote: 6.0.1
