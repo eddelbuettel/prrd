@@ -35,7 +35,7 @@ check()                                 # checks for xvfb-run-safe
 db <- getQueueFile(pkg)
 q <- ensure_queue("jobs", db = db)
 
-con <- getConnection(db)                # we re-use the liteq db for our results
+con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
 createTable(con)
 
 pid <- Sys.getpid()

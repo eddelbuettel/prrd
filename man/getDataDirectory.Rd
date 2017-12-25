@@ -14,7 +14,7 @@ getDataDirectory(package, date = format(Sys.Date()), path = ".",
 
 getQueueFile(package, date = format(Sys.Date()), path = ".", sep = "_")
 
-getConfig()
+getConfig(debug = FALSE)
 }
 \arguments{
 \item{package}{Character variable providing the package name.}
@@ -24,7 +24,9 @@ is current date.}
 
 \item{path}{Option path, default is current directory.}
 
-\item{sep}{Optional component separator, default is \dQuote{_}.}
+\item{sep}{Optional character with component separator, default is \dQuote{_}.}
+
+\item{debug}{Optional boolen}
 }
 \value{
 A directory name.
