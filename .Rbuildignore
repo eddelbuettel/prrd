@@ -2,5 +2,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^local
+^queues
 ^.*\.tar\.gz$
 ^.*_.*-.*-.*

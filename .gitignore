@@ -39,3 +39,4 @@ vignettes/*.pdf
 *.tar.gz
 *_*-*-*
 local/
+queues/
