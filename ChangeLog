@@ -1,3 +1,8 @@
+2017-12-25  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/utils.R (getConfig): Also look at '.pddr.yaml', additional
+	debug argument
+
 2017-12-24  Dirk Eddelbuettel  <edd@debian.org>
 
 	* xvfb-run-safe: Added to inst/scripts

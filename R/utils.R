@@ -9,7 +9,8 @@
 ##' @param date Optional character variable describing a date, default
 ##'  is current date.
 ##' @param path Option path, default is current directory.
-##' @param sep Optional component separator, default is \dQuote{_}.
+##' @param sep Optional character with component separator, default is \dQuote{_}.
+##' @param debug Optional boolen
 ##' @return A directory name.
 ##' @author Dirk Eddelbuettel
 getDataDirectory <- function(package, date=format(Sys.Date()), path=".", sep="_") {
@@ -28,11 +29,11 @@ getQueueFile <- function(package, date=format(Sys.Date()), path=".", sep="_" ) {
 }
 
 ##' @rdname getDataDirectory
-getConfig <- function() {
-    candidates <- c("~/.R/prrd.yaml", "~/.prrd.yaml", "/etc/R/prrd.yaml")
+getConfig <- function(debug=FALSE) {
+    candidates <- c(".prrd.yaml", "~/.R/prrd.yaml", "~/.prrd.yaml", "/etc/R/prrd.yaml")
     for (f in candidates) {
         if (file.exists(f)) {
-            #cat("Loading ", f, "\n")
+            if (debug) cat("Loading ", f, "\n")
             cfg <- config::get(file=f)
             return(cfg)
         }
