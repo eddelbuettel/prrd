@@ -6,13 +6,13 @@
 ##' @param df A one-row data.frame with results to be appended
 ##' @return A connection object
 ##' @author Dirk Eddelbuettel
-getConnection <- function(file) {
+getDatabaseConnection <- function(file) {
     con <- dbConnect(RSQLite::SQLite(), file)
     dbExecute(con, "PRAGMA busy_timeout = 1000")
     con
 }
 
-##' @rdname getConnection
+##' @rdname getDatabaseConnection
 createTable <- function(con) {
     dbExecute(con, "BEGIN EXCLUSIVE")
     sql <- 'CREATE TABLE IF NOT EXISTS results (
@@ -28,7 +28,7 @@ createTable <- function(con) {
     dbExecute(con, "COMMIT")
 }
 
-##' @rdname getConnection
+##' @rdname getDatabaseConnection
 insertRow <- function(con, df) {
     dbExecute(con, "BEGIN EXCLUSIVE")
     ##sql <- "INSERT INTO results (package, version, result, starttime, endtime,
