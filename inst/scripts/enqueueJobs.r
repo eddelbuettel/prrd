@@ -29,11 +29,6 @@ See http://dirk.eddelbuettel.com/code/...TBD.... for more information.\n")
 pkg <- opt$PACKAGE
 dir <- opt$queue
 
-r <- character()
-r["CRAN"] <- "http://cran.rstudio.com"
-r["BioCsoft"] <- "http://www.bioconductor.org/packages/release/bioc"
-options(repos = r)
-
 AP <- available.packages(contrib.url(r["CRAN"]),filter=list())		# available package at CRAN
 pkgset <- tools::dependsOnPkgs(pkg, recursive=FALSE, installed=AP)
 
@@ -41,19 +36,15 @@ AP <- setDT(as.data.frame(AP))
 pkgset <- setDT(data.frame(Package=pkgset))
 
 work <- AP[pkgset, on="Package"][,1:2]
-#print(work)
 
 db <- getQueueFile(package=pkg, path=dir)
 q <- ensure_queue("jobs", db = db)
-##print(q)
 
 n <- nrow(work)
 for (i in 1:n) {
     ttl <- paste0(work[i,Package])
     msg <- paste(work[i,Package], work[i, Version], sep="_")
-    #cat(ttl, "--", msg, "\n")
     publish(q, title = ttl, message = msg)
 }
 
-#publish(q, title = "Second message", message = "Hello again!")
 print(list_messages(q))
