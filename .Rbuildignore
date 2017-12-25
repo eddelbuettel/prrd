@@ -4,4 +4,3 @@
 ^local
 ^queues
 ^.*\.tar\.gz$
-^.*_.*-.*-.*

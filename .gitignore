@@ -37,6 +37,4 @@ vignettes/*.pdf
 .Rproj.user
 
 *.tar.gz
-*_*-*-*
-local/
 queues/
