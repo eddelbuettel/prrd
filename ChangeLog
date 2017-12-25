@@ -7,6 +7,9 @@
 	* R/utils.R (getConfig): Also look at '.pddr.yaml', additional
 	debug argument
 
+	* R/utiles.R (getExclusionSet): Support exclusion set
+	* inst/scripts/dequeueJobs.r: Idem
+
 2017-12-24  Dirk Eddelbuettel  <edd@debian.org>
 
 	* xvfb-run-safe: Added to inst/scripts

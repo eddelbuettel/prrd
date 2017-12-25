@@ -9,9 +9,10 @@ suppressMessages({
 })
 
 ## configuration for docopt
-doc <- "Usage: dequeueJobs.r [-q QUEUE] [-h] [-x] PACKAGE
+doc <- "Usage: dequeueJobs.r [-q QUEUE] [-e EXCP] [-h] [-x] PACKAGE
 
 -q --queue QUEUE      set queue directory [default: .]
+-e --exclude EXCL     exclusion set filename [default: ]
 -h --help             show this help text
 -x --usage            show help and short example usage"
 
@@ -53,7 +54,9 @@ if (!is.null(cfg <- getConfig())) {
     if ("debug" %in% names(cfg)) debug <- cfg$debug == "true"
 }
 
-good <- bad <- 0
+exclset <- if (opt$excl != "") getExclusionSet(opt$excl) else character()
+
+good <- bad <- skipped <- 0
 
 ## work down messages, if any
 while (!is.null(msg <- try_consume(q))) {
@@ -65,40 +68,51 @@ while (!is.null(msg <- try_consume(q))) {
     tok <- strsplit(msg$message, "_")[[1]]      # now have package and version in tok[1:2]
     pkgfile <- paste0(msg$message, ".tar.gz")
 
-    ## deal with exclusion set here or in enqueue ?
-    setwd(wd)
+    if (tok[1] %in% exclset) {
+        rc <- 2
 
-    if (file.exists(pkgfile)) {
-        if (verbose) cat("Seeing file", pkgfile, "\n")
     } else {
-        ##download.file(pathpkg, pkg, quiet=TRUE)
-        dl <- download.packages(tok[1], ".", method="wget", quiet=TRUE)
-        pkgfile <- basename(dl[,2])
-        if (verbose) cat("Downloaded ", pkgfile, "\n")
+
+        ## deal with exclusion set here or in enqueue ?
+        setwd(wd)
+
+        if (file.exists(pkgfile)) {
+            if (verbose) cat("Seeing file", pkgfile, "\n")
+        } else {
+            ##download.file(pathpkg, pkg, quiet=TRUE)
+            dl <- download.packages(tok[1], ".", method="wget", quiet=TRUE)
+            pkgfile <- basename(dl[,2])
+            if (verbose) cat("Downloaded ", pkgfile, "\n")
+        }
+
+        cmd <- paste("xvfb-run-safe --server-args=\"-screen 0 1024x768x24\" ",
+                     "R",  #rbinary,         # R or RD
+                     " CMD check --no-manual --no-vignettes ", pkgfile, " 2>&1 > ",
+                     pkgfile, ".log", sep="")
+        if (debug) print(cmd)
+        rc <- system(cmd)
+        if (debug) print(rc)
+
+        setwd(cwd)
     }
-
-    cmd <- paste("xvfb-run-safe --server-args=\"-screen 0 1024x768x24\" ",
-                 "R",  #rbinary,         # R or RD
-                 " CMD check --no-manual --no-vignettes ", pkgfile, " 2>&1 > ",
-                 pkgfile, ".log", sep="")
-    if (debug) print(cmd)
-    rc <- system(cmd)
-    if (debug) print(rc)
-
-    setwd(cwd)
     endtime <- Sys.time()
 
     if (rc == 0) {
-        ##if (verbose) cat("Success with", tok[1], "\n")
         good <- good + 1
-        cat(green("success"), "at", format(endtime), good, "/", bad, "\n")
+        cat(green("success"))
+        ack(msg)
+    } else if (rc == 2) {
+        skipped <- skipped + 1
+        cat(green("skipped"))
         ack(msg)
     } else {
-        ##if (verbose) cat("Nope with", tok[1], "\n")
         bad <- bad + 1
-        cat(red("failure"), "at", format(endtime), good, "/", bad, "\n")
-        nack(msg)
+        cat(red("failure"))
+        ack(msg)
     }
+    cat("", "at", format(endtime),
+        paste0("(",green(good), "/", blue(skipped), "/", red(bad), ")"),
+        "\n")
 
     row <- data.frame(package=tok[1],
                       version=tok[2],
@@ -113,4 +127,4 @@ while (!is.null(msg <- try_consume(q))) {
     insertRow(con, row)
 }
 requeue_failed_messages(q)
-print(list_messages(q))
+if (verbose) print(list_messages(q))

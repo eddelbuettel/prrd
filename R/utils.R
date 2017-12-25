@@ -40,3 +40,10 @@ getConfig <- function(debug=FALSE) {
     }
     return(NULL)
 }
+
+##' @rdname getDataDirectory
+getExclusionSet <- function(exclusionfile) {
+    if (!file.exists(exclusionfile)) stop("File", exclusionfile, "not found", call.=FALSE)
+    exclset <- read.csv(exclfile, stringsAsFactors=FALSE, comment.char="#")[,1]
+    exclset
+}
