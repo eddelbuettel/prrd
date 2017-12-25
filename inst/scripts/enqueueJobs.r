@@ -8,8 +8,9 @@ suppressMessages({
 })
 
 ## configuration for docopt
-doc <- "Usage: enqueuJobs.r [-h] [-x] PACKAGE
+doc <- "Usage: enqueuJobs.r [-q QUEUE] [-h] [-x] PACKAGE
 
+-q --queue QUEUE      set queue directory [default: .]
 -h --help             show this help text
 -x --usage            show help and short example usage"
 
@@ -26,6 +27,7 @@ See http://dirk.eddelbuettel.com/code/...TBD.... for more information.\n")
 }
 
 pkg <- opt$PACKAGE
+dir <- opt$queue
 
 r <- character()
 r["CRAN"] <- "http://cran.rstudio.com"
@@ -41,7 +43,7 @@ pkgset <- setDT(data.frame(Package=pkgset))
 work <- AP[pkgset, on="Package"][,1:2]
 #print(work)
 
-db <- getQueueFile(pkg)
+db <- getQueueFile(package=pkg, path=dir)
 q <- ensure_queue("jobs", db = db)
 ##print(q)
 

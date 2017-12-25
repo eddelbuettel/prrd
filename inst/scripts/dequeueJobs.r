@@ -9,8 +9,9 @@ suppressMessages({
 })
 
 ## configuration for docopt
-doc <- "Usage: dequeueJobs.r [-h] [-x] PACKAGE
+doc <- "Usage: dequeueJobs.r [-q QUEUE] [-h] [-x] PACKAGE
 
+-q --queue QUEUE      set queue directory [default: .]
 -h --help             show this help text
 -x --usage            show help and short example usage"
 
@@ -27,12 +28,13 @@ See http://dirk.eddelbuettel.com/code/...TBD.... for more information.\n")
 }
 
 pkg <- opt$PACKAGE
+dir <- opt$queue
 
 check()                                 # checks for xvfb-run-safe
 
 ## setting repos now in local/setup.R
 
-db <- getQueueFile(pkg)
+db <- getQueueFile(package=pkg, path=dir)
 q <- ensure_queue("jobs", db = db)
 
 con <- getDatabaseConnection(db)        # we re-use the liteq db for our results

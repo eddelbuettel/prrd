@@ -1,5 +1,9 @@
 2017-12-25  Dirk Eddelbuettel  <edd@debian.org>
 
+	* inst/scripts/enqueueJobs.r: New argument '-q queue' for queue
+	directory to be used
+	* inst/scripts/dequeueJobs.r: Idem
+
 	* R/utils.R (getConfig): Also look at '.pddr.yaml', additional
 	debug argument
 
