@@ -1,10 +1,12 @@
-##' This functions create a data directory given a package name and
-##' additional optional arguments which can be used to store test
-##' meta-data and results.
+##' These functions create a data directory name given a package name
+##' and additional optional arguments which can be used to store test
+##' meta-data and results, return a queue file name, return the
+##' configuration object (retrieved from several standard locations)
+##' and load the exclusion set.
 ##'
 ##' Additional helper functions get particular directories, config settings or
 ##' check some assumptions about files in \code{PATH} and alike,
-##' @title Create a data directory
+##' @title Various Helper Functions
 ##' @param package Character variable providing the package name.
 ##' @param date Optional character variable describing a date, default
 ##'  is current date.

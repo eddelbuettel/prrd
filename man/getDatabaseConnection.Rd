@@ -23,7 +23,11 @@ insertRow(con, df)
 A connection object
 }
 \description{
-Create a Database Connection
+Several Database Connection Helper Functions
+}
+\details{
+These functions return a connection, create a table and insert
+a row of data, respectively.
 }
 \author{
 Dirk Eddelbuettel

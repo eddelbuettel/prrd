@@ -1,3 +1,10 @@
+2017-12-26  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/db.R: Updated / expanded roxygen documentation
+	* R/utils.R: Idem
+	* man/getDatabaseConnection.Rd: Idem
+	* man/getDataDirectory.Rd: Idem
+
 2017-12-25  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/scripts/enqueueJobs.r: New argument '-q queue' for queue

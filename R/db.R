@@ -1,5 +1,7 @@
-##' Create a Database Connection
+##' Several Database Connection Helper Functions
 ##'
+##' These functions return a connection, create a table and insert
+##' a row of data, respectively.
 ##' @title Database Helper Functions
 ##' @param file A character variable pointing to a sqlite3 file
 ##' @param con A database connection object
