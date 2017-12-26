@@ -5,6 +5,9 @@
 	* man/getDatabaseConnection.Rd: Idem
 	* man/getDataDirectory.Rd: Idem
 
+	* R/checks.R (runSanityChecks): Renamed from check()
+	* inst/scripts/dequeueJobs.r: Updated call
+
 2017-12-25  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/scripts/enqueueJobs.r: New argument '-q queue' for queue

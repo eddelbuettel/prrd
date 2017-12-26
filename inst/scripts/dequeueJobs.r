@@ -31,7 +31,7 @@ See http://dirk.eddelbuettel.com/code/...TBD.... for more information.\n")
 pkg <- opt$PACKAGE
 dir <- opt$queue
 
-check()                                 # checks for xvfb-run-safe
+runSanityChecks()                       # checks for xvfb-run-safe
 
 ## setting repos now in local/setup.R
 
