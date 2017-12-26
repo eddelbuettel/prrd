@@ -29,7 +29,7 @@ See http://dirk.eddelbuettel.com/code/...TBD.... for more information.\n")
 pkg <- opt$PACKAGE
 dir <- opt$queue
 
-AP <- available.packages(filter=list())		# available package at CRAN
+AP <- available.packages(contrib.url(options("repos")$repos[["CRAN"]]), filter=list())		# available package at CRAN
 pkgset <- tools::dependsOnPkgs(pkg, recursive=FALSE, installed=AP)
 
 AP <- setDT(as.data.frame(AP))

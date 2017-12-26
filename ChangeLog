@@ -2,13 +2,18 @@
 
 	* inst/scripts/enqueueJobs.r: New argument '-q queue' for queue
 	directory to be used
+
 	* inst/scripts/dequeueJobs.r: Idem
 
 	* R/utils.R (getConfig): Also look at '.pddr.yaml', additional
 	debug argument
 
-	* R/utiles.R (getExclusionSet): Support exclusion set
+	* R/utils.R (getExclusionSet): Support exclusion set
 	* inst/scripts/dequeueJobs.r: Idem
+
+	* inst/scripts/enqueueJobs.r: Use CRAN repo
+
+	* local/setup.R: Committed as well, set MAKE environment variable
 
 2017-12-24  Dirk Eddelbuettel  <edd@debian.org>
 

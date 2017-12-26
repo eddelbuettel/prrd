@@ -10,3 +10,5 @@ options(repos = r)
 if (exists("opt") && "exclset" %in% names(opt) && opt$exclset == "") {
     opt$exclset <- "~/git/rcpp-log/data/blacklist.csv"
 }
+
+Sys.setenv("MAKE"="make")
