@@ -45,7 +45,7 @@ getConfig <- function(debug=FALSE) {
 
 ##' @rdname getDataDirectory
 getExclusionSet <- function(exclusionfile) {
-    if (!file.exists(exclusionfile)) stop("File", exclusionfile, "not found", call.=FALSE)
-    exclset <- read.csv(exclfile, stringsAsFactors=FALSE, comment.char="#")[,1]
+    if (!file.exists(exclusionfile)) stop("File ", exclusionfile, " not found", call.=FALSE)
+    exclset <- read.csv(exclusionfile, stringsAsFactors=FALSE, comment.char="#")[,1]
     exclset
 }

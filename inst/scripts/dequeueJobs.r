@@ -54,9 +54,9 @@ if (!is.null(cfg <- getConfig())) {
     if ("debug" %in% names(cfg)) debug <- cfg$debug == "true"
 }
 
-exclset <- if (opt$excl != "") getExclusionSet(opt$excl) else character()
-
 good <- bad <- skipped <- 0
+exclset <- if (opt$exclude != "") getExclusionSet(opt$exclude) else character()
+if (verbose) print(exclset)
 
 ## work down messages, if any
 while (!is.null(msg <- try_consume(q))) {
@@ -103,7 +103,7 @@ while (!is.null(msg <- try_consume(q))) {
         ack(msg)
     } else if (rc == 2) {
         skipped <- skipped + 1
-        cat(green("skipped"))
+        cat(blue("skipped"))
         ack(msg)
     } else {
         bad <- bad + 1

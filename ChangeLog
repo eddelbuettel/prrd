@@ -1,5 +1,8 @@
 2017-12-27  Dirk Eddelbuettel  <edd@debian.org>
 
+	* R/utils.R (getExclusionSet): Correct exclusion set use
+	* inst/scripts/dequeueJobs.r: Idem
+
 	* local/setup.R: Set two enviornment variables, support local
 	Makevars
 
