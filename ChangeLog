@@ -3,8 +3,9 @@
 	* R/utils.R (getExclusionSet): Correct exclusion set use
 	* inst/scripts/dequeueJobs.r: Idem
 
-	* local/setup.R: Set two enviornment variables, support local
-	Makevars
+	* local/setup.R: Set two env variables, support local Makevars
+
+	* inst/scripts/watchDB.sh: Simplified
 
 2017-12-26  Dirk Eddelbuettel  <edd@debian.org>
 
