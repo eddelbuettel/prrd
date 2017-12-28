@@ -3,6 +3,8 @@
 	* R/utils.R: Document to the config yaml file
 	* man/getDataDirectory.Rd: Idem
 
+	* NAMESPACE: Also import read.csv from utils
+
 2017-12-27  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/utils.R (getExclusionSet): Correct exclusion set use

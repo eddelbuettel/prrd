@@ -20,13 +20,19 @@
 ##' }
 ##' The \code{setup} field is particularly useful as the file being sourced
 ##' can contain other R expressions setting environment variables or options.
+##' It is (currently) searched in the four locations \dQuote{.prrd.yaml},
+##' \dQuote{~/.R/prrd.yaml}, \dQuote{~/.prrd.yaml},  and \dQuote{/etc/R/prrd.yaml}.
+##' The first file found ends the search and is used, content is not merged from
+##' several files.
 ##' @title Various Helper Functions
 ##' @param package Character variable providing the package name.
 ##' @param date Optional character variable describing a date, default
 ##'  is current date.
-##' @param path Option path, default is current directory.
+##' @param path Optional path, default is current directory.
 ##' @param sep Optional character with component separator, default is \dQuote{_}.
 ##' @param debug Optional boolean
+##' @param exclusionfile Character variable with path and file for an optional
+##' exclusion set.
 ##' @return A directory name.
 ##' @author Dirk Eddelbuettel
 getDataDirectory <- function(package, date=format(Sys.Date()), path=".", sep="_") {

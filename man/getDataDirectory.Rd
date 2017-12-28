@@ -25,11 +25,14 @@ getExclusionSet(exclusionfile)
 \item{date}{Optional character variable describing a date, default
 is current date.}
 
-\item{path}{Option path, default is current directory.}
+\item{path}{Optional path, default is current directory.}
 
 \item{sep}{Optional character with component separator, default is \dQuote{_}.}
 
 \item{debug}{Optional boolean}
+
+\item{exclusionfile}{Character variable with path and file for an optional
+exclusion set.}
 }
 \value{
 A directory name.
@@ -59,6 +62,10 @@ build-dependencies.}
 }
 The \code{setup} field is particularly useful as the file being sourced
 can contain other R expressions setting environment variables or options.
+It is (currently) searched in the four locations \dQuote{.prrd.yaml},
+\dQuote{~/.R/prrd.yaml}, \dQuote{~/.prrd.yaml},  and \dQuote{/etc/R/prrd.yaml}.
+The first file found ends the search and is used, content is not merged from
+several files.
 }
 
 \author{
