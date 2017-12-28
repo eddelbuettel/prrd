@@ -6,13 +6,27 @@
 ##'
 ##' Additional helper functions get particular directories, config settings or
 ##' check some assumptions about files in \code{PATH} and alike,
+##'
+##' @section Config File:
+##' An optional config file can be used to set several configuration variables.
+##' Currently supported are
+##' \describe{
+##'   \item{setup}{The path to an R file that will be \code{source}'ed.}
+##'   \item{workdir}{The directory used for the parallel run of reverse depends.}
+##'   \item{libdir}{The directory passed to \code{.libPaths} allow for additonal
+##' build-dependencies.}
+##'   \item{debug}{A boolean switch to enable more debugging output.}
+##'   \item{verbose}{A boolean switch to enable more verbose output.}
+##' }
+##' The \code{setup} field is particularly useful as the file being sourced
+##' can contain other R expressions setting environment variables or options.
 ##' @title Various Helper Functions
 ##' @param package Character variable providing the package name.
 ##' @param date Optional character variable describing a date, default
 ##'  is current date.
 ##' @param path Option path, default is current directory.
 ##' @param sep Optional character with component separator, default is \dQuote{_}.
-##' @param debug Optional boolen
+##' @param debug Optional boolean
 ##' @return A directory name.
 ##' @author Dirk Eddelbuettel
 getDataDirectory <- function(package, date=format(Sys.Date()), path=".", sep="_") {

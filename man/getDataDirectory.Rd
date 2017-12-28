@@ -29,7 +29,7 @@ is current date.}
 
 \item{sep}{Optional character with component separator, default is \dQuote{_}.}
 
-\item{debug}{Optional boolen}
+\item{debug}{Optional boolean}
 }
 \value{
 A directory name.
@@ -45,6 +45,22 @@ and load the exclusion set.
 Additional helper functions get particular directories, config settings or
 check some assumptions about files in \code{PATH} and alike,
 }
+\section{Config File}{
+
+An optional config file can be used to set several configuration variables.
+Currently supported are
+\describe{
+  \item{setup}{The path to an R file that will be \code{source}'ed.}
+  \item{workdir}{The directory used for the parallel run of reverse depends.}
+  \item{libdir}{The directory passed to \code{.libPaths} allow for additonal
+build-dependencies.}
+  \item{debug}{A boolean switch to enable more debugging output.}
+  \item{verbose}{A boolean switch to enable more verbose output.}
+}
+The \code{setup} field is particularly useful as the file being sourced
+can contain other R expressions setting environment variables or options.
+}
+
 \author{
 Dirk Eddelbuettel
 }
