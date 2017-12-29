@@ -1,3 +1,15 @@
+2017-12-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/enqueue.R (enqueueJobs): New function, based on script
+	* man/enqueueJobs.Rd: Documentation
+	* inst/scripts/enqueueJobs.r: Use new function
+
+	* NAMESPACE: More explicit imports
+	* DESCRIPTIONS: More imports
+
+	* R/utils.R: Expanded documentation for return values
+	* man/getDataDirectory.Rd: Idem
+
 2017-12-28  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/utils.R: Document to the config yaml file

@@ -35,7 +35,11 @@ is current date.}
 exclusion set.}
 }
 \value{
-A directory name.
+For \code{getDataDirectory}, a directory name. For \code{getQueueFile}, a queue
+database file name (used only internally). For \code{getConfig}, a named vector with config 
+entries. For \code{getExclusionSet} a character vector of package names. Nothing is returned
+by \code{runSanityChecks} which is invoked for its side effect of validation (currently only
+if \code{run-xvfb-safe} is in the PATH).
 }
 \description{
 These functions create a data directory name given a package name

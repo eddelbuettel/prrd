@@ -33,7 +33,11 @@
 ##' @param debug Optional boolean
 ##' @param exclusionfile Character variable with path and file for an optional
 ##' exclusion set.
-##' @return A directory name.
+##' @return For \code{getDataDirectory}, a directory name. For \code{getQueueFile}, a queue
+##' database file name (used only internally). For \code{getConfig}, a named vector with config 
+##' entries. For \code{getExclusionSet} a character vector of package names. Nothing is returned
+##' by \code{runSanityChecks} which is invoked for its side effect of validation (currently only
+##' if \code{run-xvfb-safe} is in the PATH).
 ##' @author Dirk Eddelbuettel
 getDataDirectory <- function(package, date=format(Sys.Date()), path=".", sep="_") {
     dir <- file.path(path, paste(package, date, sep=sep))
