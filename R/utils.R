@@ -34,7 +34,7 @@
 ##' @param exclusionfile Character variable with path and file for an optional
 ##' exclusion set.
 ##' @return For \code{getDataDirectory}, a directory name. For \code{getQueueFile}, a queue
-##' database file name (used only internally). For \code{getConfig}, a named vector with config 
+##' database file name (used only internally). For \code{getConfig}, a named vector with config
 ##' entries. For \code{getExclusionSet} a character vector of package names. Nothing is returned
 ##' by \code{runSanityChecks} which is invoked for its side effect of validation (currently only
 ##' if \code{run-xvfb-safe} is in the PATH).
@@ -60,7 +60,7 @@ getConfig <- function(debug=FALSE) {
     for (f in candidates) {
         if (file.exists(f)) {
             if (debug) cat("Loading ", f, "\n")
-            cfg <- config::get(file=f)
+            cfg <- get(file=f)          # from the config package, and imported
             return(cfg)
         }
     }

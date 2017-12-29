@@ -1,12 +1,5 @@
 #!/usr/bin/env r
 
-suppressMessages({
-    library(prrd)
-    library(liteq)
-    library(docopt)
-    library(data.table)
-})
-
 ## configuration for docopt
 doc <- "Usage: enqueuJobs.r [-q QUEUE] [-h] [-x] PACKAGE
 
@@ -14,7 +7,7 @@ doc <- "Usage: enqueuJobs.r [-q QUEUE] [-h] [-x] PACKAGE
 -h --help             show this help text
 -x --usage            show help and short example usage"
 
-opt <- docopt(doc)			# docopt parsing
+opt <- docopt::docopt(doc)              # docopt parsing
 
 if (opt$usage) {
     cat(doc, "\n\n")
@@ -26,7 +19,4 @@ See http://dirk.eddelbuettel.com/code/...TBD.... for more information.\n")
     q("no")
 }
 
-pkg <- opt$PACKAGE
-dir <- opt$queue
-
-enqueueJobs(pkg, dir)
+prrd::enqueueJobs(opt$PACKAGE, opt$queue)

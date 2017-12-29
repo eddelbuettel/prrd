@@ -1,6 +1,11 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("utils", "read.csv", "available.packages", "contrib.url")
-importFrom("liteq", "ensure_queue", "publish", "list_messages")
-importFrom("config", "get")
+importFrom("tools", "dependsOnPkgs")
+importFrom("utils", "read.csv", "available.packages", "contrib.url",
+           "download.packages", "globalVariables")
+importFrom("liteq", "ensure_queue", "publish", "list_messages",
+           "try_consume", "ack", "requeue_failed_messages")
+importFrom("DBI", "dbConnect", "dbExecute", "dbWriteTable")
+importFrom("crayon", "red", "green", "blue")
 importFrom("data.table", "setDT")
-import(DBI, RSQLite)
+importFrom("RSQLite", "SQLite")
+importFrom("config", "get")

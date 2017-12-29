@@ -12,7 +12,7 @@ enqueueJobs <- function(package, directory) {
 
     ## available package at CRAN
     AP <- available.packages(contrib.url(options("repos")$repos[["CRAN"]]), filters=list())
-    pkgset <- tools::dependsOnPkgs(package, recursive=FALSE, installed=AP)
+    pkgset <- dependsOnPkgs(package, recursive=FALSE, installed=AP)
 
     AP <- setDT(as.data.frame(AP))
     pkgset <- setDT(data.frame(Package=pkgset))
@@ -32,4 +32,4 @@ enqueueJobs <- function(package, directory) {
     list_messages(q)
 }
 
-utils::globalVariables(c("Package", "Version")) # pacify R CMD check
+globalVariables(c("Package", "Version")) # pacify R CMD check
