@@ -4,6 +4,10 @@
 	* man/enqueueJobs.Rd: Documentation
 	* inst/scripts/enqueueJobs.r: Use new function
 
+	* R/dequeue.R (dequeueJobs): New function, based on script
+	* man/dequeueJobs.Rd: Documentation
+	* inst/scripts/dequeueJobs.r: Use new function
+
 	* NAMESPACE: More explicit imports
 	* DESCRIPTIONS: More imports
 
