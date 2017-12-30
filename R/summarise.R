@@ -20,6 +20,7 @@ summariseQueue <- function(package, directory, dbfile="") {
     }
     con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
     res <- setDT(dbGetQuery(con, "select * from results"))
+    jobs <- setDT(dbGetQuery(con, "select * from qqjobs"))
     dbDisconnect(con)
 
     cat("Test of", package, "had",
@@ -31,11 +32,16 @@ summariseQueue <- function(package, directory, dbfile="") {
     et <- res[, max(endtime)]
     dtf <- format(round(difftime(et,st), digits=3))
     dts <- as.numeric(difftime(et,st,units="secs"))
-    cat("Ran from", times[1,1], "to", times[1,2], "for", dtf, "\n")
+    cat("Ran from", st, "to", et, "for", dtf, "\n")
     cat("Average of", round(dts/nrow(res), digits=3), "secs relative to",
-        format(round(res[, mean(runtime)], digits=3)), "using",
+        format(round(res[, mean(runtime)], digits=3)), "secs using",
         nrow(res[, .N, by=runner]), "runners\n")
-    return(res)
+    cat("\n\n")
+    print(jobs[status=="WORKING",])
+    cat("\n\n")
+    print(jobs[status=="READY",])
+
+    invisible(res)
 }
 
 

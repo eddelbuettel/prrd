@@ -1,7 +1,8 @@
 2017-12-30  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/summarise.R (summariseQueue): Extended slightly, rewritten to
-	use only one query and data.table obs thereafter
+	use only one query and data.table obs thereafter, also summarize
+	queued jobs
 
 2017-12-29  Dirk Eddelbuettel  <edd@debian.org>
 
