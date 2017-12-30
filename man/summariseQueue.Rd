@@ -4,12 +4,15 @@
 \alias{summariseQueue}
 \title{Summarisse results from a reverse-dependency check}
 \usage{
-summariseQueue(package, directory)
+summariseQueue(package, directory, dbfile = "")
 }
 \arguments{
 \item{package}{A character variable denoting a package}
 
 \item{directory}{A character variable denoting a directory}
+
+\item{dbfile}{A character variable for an optional override which, if
+present, is used over \sQuote{package} and \sQuote{directory}.}
 }
 \value{
 NULL, invisibly

@@ -110,5 +110,6 @@ dequeueJobs <- function(package, directory, exclude="") {
     requeue_failed_messages(q)
     lst <- list_messages(q)
     if (verbose) print(lst)
+    dbDisconnect(con)
     lst
 }
