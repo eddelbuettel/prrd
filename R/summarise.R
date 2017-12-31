@@ -24,9 +24,9 @@ summariseQueue <- function(package, directory, dbfile="") {
     dbDisconnect(con)
 
     cat("Test of", package, "had",
-        sum(res[result==0,.N]), "successes,",
-        sum(res[result==1,.N]), "failures, and",
-        sum(res[result==2,.N]), "skipped packages.",
+        res[result==0,.N], "successes,",
+        res[result==1,.N], "failures, and",
+        res[result==2,.N], "skipped packages.",
         "\n")
     st <- res[, min(starttime)]
     et <- res[, max(endtime)]
@@ -36,11 +36,18 @@ summariseQueue <- function(package, directory, dbfile="") {
     cat("Average of", round(dts/nrow(res), digits=3), "secs relative to",
         format(round(res[, mean(runtime)], digits=3)), "secs using",
         nrow(res[, .N, by=runner]), "runners\n")
-    cat("\n\n")
-    print(jobs[status=="WORKING",])
-    cat("\n\n")
-    print(jobs[status=="READY",])
-
+    cat("\n")
+    if (jobs[status=="WORKING",.N] > 0) {
+        print(jobs[status=="WORKING",])
+    } else {
+        cat("None still working\n")
+    }
+    cat("\n")
+    if (jobs[status=="READY",.N] > 0) {
+        print(jobs[status=="READY",])
+    } else {
+        cat("None still scheduled\n")
+    }
     invisible(res)
 }
 

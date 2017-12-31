@@ -1,9 +1,9 @@
 #!/usr/bin/env r
-
+#
 ## configuration for docopt
-doc <- "Usage: enqueueJobs.r [-q QUEUE] [-h] [-x] PACKAGE
+doc <- "Usage: summarizeJobs.r [-p PACKAGE] [-h] [-x] QUEUEFILE
 
--q --queue QUEUE      set queue directory [default: .]
+-p --package PACKAGE  name used in output text [default: unknown]
 -h --help             show this help text
 -x --usage            show help and short example usage"
 
@@ -12,11 +12,11 @@ opt <- docopt::docopt(doc)              # docopt parsing
 if (opt$usage) {
     cat(doc, "\n\n")
     cat("Examples:
-  enqueueJobs.r Rcpp
+  summarizeJobs.r queue.sqlite
 
-enqueueJobs.r is part of prrd.r which is becoming a parallel rev dep runner.
+summarizeJobs.r is part of prrd.r which is becoming a parallel rev dep runner.
 See http://dirk.eddelbuettel.com/code/...TBD.... for more information.\n")
     q("no")
 }
 
-prrd::enqueueJobs(opt$PACKAGE, opt$queue)
+prrd::summariseQueue(opt$package, "", dbfile=opt$QUEUEFILE)

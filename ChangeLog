@@ -1,3 +1,9 @@
+2017-12-31  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/scripts/summarizeJobs.r: New script
+
+	* R/summarise.R (summariseQueue): Small enhancements
+
 2017-12-30  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/summarise.R (summariseQueue): Extended slightly, rewritten to
