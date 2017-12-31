@@ -11,7 +11,7 @@ before_install:
   - ./run.sh bootstrap
 
 install:
-  - ./run.sh install_aptget r-cran-config r-cran-data.table r-cran-crayon r-cran-dbi r-cran-rsqlite r-cran-assertthat r-can-rappdirs
+  - ./run.sh install_aptget r-cran-config r-cran-data.table r-cran-crayon r-cran-dbi r-cran-rsqlite r-cran-assertthat r-cran-rappdirs
   - ./run.sh install_r liteq
 
 script:
