@@ -4,4 +4,4 @@
 ^local
 ^queues
 ^.*\.tar\.gz$
-^.travis.yml$
+^\.travis\.yml

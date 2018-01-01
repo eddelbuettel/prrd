@@ -48,11 +48,31 @@ $ dequeueJobs -q queueDirectory Rcpp
 which will find the (current) queue file in the specified directory for the given package, here
 `Rcpp`.  Again, this can also be done from an R prompt if you prefer, see `help(dequeueJobs)`.
 
-Each worker, when idle, goes to the queue and requests a job, which he then labors over by the
-testing the thus-given reverse depedency.  Once done, the worker is idle and returns to the queue.
+Each worker, when idle, goes to the queue and requests a job, which he then labors over by testing
+the thus-given reverse depedency.  Once done, the worker is idle and returns to the queue and the
+cycle repeats. 
 
-As there is absolutely no interdepedence between the tests, this parallelises easily and up to
-resource level of the machine.  
+As there is absolutely no interdepedence between the tests, this parallelises easily and up to the
+resource level of the machine.
+
+### Performance 
+
+To illustrate, "wall time" for a reverse-dependecy check of
+[Rcpp](http://dirk.eddelbuettel.com/code/rcpp.html) decreased from 14.91 hours to 3.75 hours (or
+almost four-fold) using six workers. An earlier run of
+[RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html) decreased from 5.87 hours to
+1.92 hours (or just over three-fold) using four workers. In all cases the machine was used which was
+generally not idle.
+
+The following screenshot shows a run for
+[RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html) with six workers. It shows
+the successes in green, skipped jobs in blue and three failures from runaway jobs I killed after
+several minutes.
+
+![](local/screenshot_prrd_rcpparmadillo.png)
+
+The split screen, as well as the additional tabls, is thanks to the wonderful
+[byobu](http://byobu.co) wrapper around [tmux](https://github.com/tmux/tmux).
 
 ### Configuration
 
