@@ -1,3 +1,7 @@
+2018-01-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Added
+
 2017-12-31  Dirk Eddelbuettel  <edd@debian.org>
 
 	* .travis.yml: Added Travis CI integration
