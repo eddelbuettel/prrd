@@ -61,15 +61,16 @@ To illustrate, "wall time" for a reverse-dependecy check of
 [Rcpp](http://dirk.eddelbuettel.com/code/rcpp.html) decreased from 14.91 hours to 3.75 hours (or
 almost four-fold) using six workers. An earlier run of
 [RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html) decreased from 5.87 hours to
-1.92 hours (or just over three-fold) using four workers. In all cases the machine was used which was
-generally not idle.
+1.92 hours (or just over three-fold) using four workers, and to 1.29 hours (or by 4.5) using six
+workers (and a fresh `ccache`, see
+[here](http://dirk.eddelbuettel.com/blog/2017/11/27#011_faster_package_installation_one) for its
+impact).  In all cases the machine was used which was generally not idle.
 
 The following screenshot shows a run for
 [RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html) with six workers. It shows
-the successes in green, skipped jobs in blue and three failures from runaway jobs I killed after
-several minutes.
+the successes in green, skipped jobs in blue (from packages which sometimes would result in runaway tests) and no failures (which would be shown in red).
 
-![](local/screenshot_prrd_rcpparmadillo.png)
+![](https://github.com/eddelbuettel/prrd/raw/master/local/screenshot_prrd_rcpparmadillo.png)
 
 The split screen, as well as the additional tabls, is thanks to the wonderful
 [byobu](http://byobu.co) wrapper around [tmux](https://github.com/tmux/tmux).
