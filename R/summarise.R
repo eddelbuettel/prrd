@@ -36,6 +36,8 @@ summariseQueue <- function(package, directory, dbfile="") {
     cat("Average of", round(dts/nrow(res), digits=3), "secs relative to",
         format(round(res[, mean(runtime)], digits=3)), "secs using",
         nrow(res[, .N, by=runner]), "runners\n")
+    cat("\nFailed packages: ", paste(res[result==1, .(package)][[1]], collapse=", "), "\n")
+    cat("\nSkipped packages: ", paste(res[result==2, .(package)][[1]], collapse=", "), "\n")
     cat("\n")
     if (jobs[status=="WORKING",.N] > 0) {
         print(jobs[status=="WORKING",])

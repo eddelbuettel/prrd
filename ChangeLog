@@ -1,3 +1,9 @@
+2018-01-02  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/summarise.R (summariseQueue): List failed and skipped packages
+
+	* inst/scripts/summariseJobs.r: Renamed for more consistency
+
 2018-01-01  Dirk Eddelbuettel  <edd@debian.org>
 
 	* README.md: Added
