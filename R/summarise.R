@@ -55,4 +55,5 @@ summariseQueue <- function(package, directory, dbfile="") {
 
 
 ## make R CMD check happy
-globalVariables(c(".N", "result", "starttime", "endtime", "times", "runtime", "runner", "status"))
+globalVariables(c(".", ".N", "result", "starttime", "endtime",
+                  "times", "runtime", "runner", "status"))

@@ -1,3 +1,14 @@
+2018-01-03  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Date, Version): First CRAN Release 0.0.1
+
+	* inst/NEWS.Rd: Added
+
+	* R/enqueue.R: Added small example
+	* man/enqueueJobs.Rd: Ditto
+
+	* R/summarise.R (summariseQueue): Also declare "." a global
+
 2018-01-02  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/summarise.R (summariseQueue): List failed and skipped packages

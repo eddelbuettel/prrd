@@ -8,6 +8,10 @@
 ##' @param directory A character variable denoting a directory
 ##' @return A queue is create as a side effect, its elements are returned invisibly
 ##' @author Dirk Eddelbuettel
+##' @examples
+##' td <- tempdir()
+##' options(repos=c(CRAN="https://cloud.r-project.org"))
+##' jobsdf <- enqueueJobs(package="digest", directory=td)
 enqueueJobs <- function(package, directory) {
 
     ## available package at CRAN

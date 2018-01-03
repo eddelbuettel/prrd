@@ -2,7 +2,7 @@ Package: prrd
 Type: Package
 Title: Parallel Runs of Reverse Depends
 Version: 0.0.1
-Date: 2017-12-18
+Date: 2018-01-03
 Author: Dirk Eddelbuettel
 Maintainer: Dirk Eddelbuettel <edd@debian.org>
 Description: Reverse depends for a given package are queued such that multiple
