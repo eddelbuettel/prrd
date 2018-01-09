@@ -1,6 +1,14 @@
-2018-01-03  Dirk Eddelbuettel  <edd@debian.org>
+2018-01-09  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Date, Version): First CRAN Release 0.0.1
+
+	* DESCRIPTION (OS_type): Limit to Unix for now,
+	(SystemRequirements): State need for 'wget' in PATH
+
+	* R/checks.R (runSanityChecks): Error message for 'xvfb-run-safe'
+	missing now states that the script is included in package
+
+2018-01-03  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/NEWS.Rd: Added
 
