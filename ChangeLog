@@ -1,3 +1,9 @@
+2018-01-16  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/dequeue.R (dequeueJobs): No need for wget
+	* DESCRIPTION (SystemRequirements): No need to mention wget, but mention
+	xvfb-run at least while it is being used unconditionally
+
 2018-01-09  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Date, Version): First CRAN Release 0.0.1

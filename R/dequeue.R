@@ -60,8 +60,7 @@ dequeueJobs <- function(package, directory, exclude="") {
             if (file.exists(pkgfile)) {
                 if (verbose) cat("Seeing file", pkgfile, "\n")
             } else {
-                ##download.file(pathpkg, pkg, quiet=TRUE)
-                dl <- download.packages(tok[1], ".", method="wget", quiet=TRUE)
+                dl <- download.packages(tok[1], ".", quiet=TRUE)
                 pkgfile <- basename(dl[,2])
                 if (verbose) cat("Downloaded ", pkgfile, "\n")
             }

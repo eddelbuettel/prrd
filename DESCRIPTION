@@ -10,6 +10,6 @@ Description: Reverse depends for a given package are queued such that multiple
 License: GPL (>= 2)
 Imports: config, liteq, data.table, crayon, DBI, RSQLite
 Suggests: docopt
-SystemRequirements: A 'wget' binary in the PATH.
+SystemRequirements: A 'xvfb-run' binary in the PATH.
 OS_type: unix
 RoxygenNote: 6.0.1
