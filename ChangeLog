@@ -2,12 +2,14 @@
 
 	* inst/scripts/xvfb-run-safe: No longer use $HOME (#2)
 
+	* R/enqueue.R (enqueueJobs): Consider more repos than just CRAN (#4)
+
 2018-01-19  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Date, Version): New minor version
 
 	* R/checks.R (runSanityChecks): Check for xvfb-run and
-	xvfb-run-safe only on Linux, set 'xvfb' value accordingly
+	xvfb-run-safe only on Linux, set 'xvfb' value accordingly (#3)
 
 	* R/dequeue.R (dequeueJobs): Use 'xvfb' value; create working
 	directories as needed

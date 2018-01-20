@@ -14,8 +14,14 @@
 ##' jobsdf <- enqueueJobs(package="digest", directory=td)
 enqueueJobs <- function(package, directory) {
 
-    ## available package at CRAN
-    AP <- available.packages(contrib.url(options("repos")$repos[["CRAN"]]), filters=list())
+    if (!is.null(cfg <- getConfig())) {
+        if ("setup" %in% names(cfg)) source(cfg$setup)
+    }
+
+    ## available package at CRAN and/or elsewhere
+    ## use cfg$setup to override/extend with additional (local) repos
+    AP <- available.packages(filters=list())
+
     pkgset <- dependsOnPkgs(package, recursive=FALSE, installed=AP)
 
     AP <- setDT(as.data.frame(AP))

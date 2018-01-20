@@ -11,6 +11,8 @@
     \item No longer use \code{$HOME} in \code{xvfb-run-safe} (\ghit{2}).
     \item The use of \code{xvfb-run} use is now conditional on the OS
     (\ghit{3}).
+    \item The set of available packages is no longer constrained to
+    CRAN, but could be via the local setup script (\ghit{4}).
   }
 }
 
