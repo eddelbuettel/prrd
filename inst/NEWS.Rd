@@ -3,6 +3,14 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/prrd/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/prrd/issues/#1}{##1}}
 
+\section{Changes in prrd version 0.0.1 (2018-01-03)}{
+  \itemize{
+    \item No longer require 'wget'
+    \item Enhance sanity checker
+    \item Expanded and improved dequeue function
+  }
+}
+
 \section{Changes in prrd version 0.0.1 (2018-01-09)}{
   \itemize{
     \item Initial CRAN release, for now with 'unix-only' constraint

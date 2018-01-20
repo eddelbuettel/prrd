@@ -1,3 +1,16 @@
+2018-01-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Date, Version): New minor version
+
+	* R/checks.R (runSanityChecks): Check for xvfb-run and
+	xvfb-run-safe only on Linux, set 'xvfb' value accordingly
+
+	* R/dequeue.R (dequeueJobs): Use 'xvfb' value; create working
+	directories as needed
+
+	* DESCRIPTION (SystemRequirements): No need to mention xvfb-run,
+	* DESCRIPTION (OS_type): Removed
+
 2018-01-16  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/dequeue.R (dequeueJobs): No need for wget

@@ -29,8 +29,17 @@ dequeueJobs <- function(package, directory, exclude="") {
 
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
-        if ("workdir" %in% names(cfg)) wd <- cfg$workdir
-        if ("libdir" %in% names(cfg)) Sys.setenv("R_LIBS_USER"=cfg$libdir)
+        if ("workdir" %in% names(cfg)) {
+            wd <- cfg$workdir
+            if (!dir.exists(wd)) {
+                dir.create(wd)
+            }
+        }
+        if ("libdir" %in% names(cfg)) {
+            Sys.setenv("R_LIBS_USER"=cfg$libdir)
+            if (!dir.exists(cfg$libdir)) {
+                dir.create(cfg$libdir)
+            }
         if ("verbose" %in% names(cfg)) verbose <- cfg$verbose == "true"
         if ("debug" %in% names(cfg)) debug <- cfg$debug == "true"
     }
@@ -65,8 +74,9 @@ dequeueJobs <- function(package, directory, exclude="") {
                 if (verbose) cat("Downloaded ", pkgfile, "\n")
             }
 
+            cmd <- paste(.pkgenv[["xvfb"]],
             cmd <- paste("xvfb-run-safe --server-args=\"-screen 0 1024x768x24\" ",
-                         "R",  #rbinary,         # R or RD
+                         "R",  		       # R or maybe RD
                          " CMD check --no-manual --no-vignettes ", pkgfile, " 2>&1 > ",
                          pkgfile, ".log", sep="")
             if (debug) print(cmd)
