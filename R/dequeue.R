@@ -26,6 +26,7 @@ dequeueJobs <- function(package, directory, exclude="") {
     hostname <- Sys.info()[["nodename"]]
     wd <- cwd <- getwd()
     debug <- verbose <- FALSE
+    env <- character()
 
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
@@ -36,10 +37,12 @@ dequeueJobs <- function(package, directory, exclude="") {
             }
         }
         if ("libdir" %in% names(cfg)) {
+            ## setting the environment variable works with littler, but not with RScript
             Sys.setenv("R_LIBS_USER"=cfg$libdir)
             if (!dir.exists(cfg$libdir)) {
                 dir.create(cfg$libdir)
             }
+            env <- paste0("R_LIBS=\"", cfg$libdir, "\"")
         }
         if ("verbose" %in% names(cfg)) verbose <- cfg$verbose == "true"
         if ("debug" %in% names(cfg)) debug <- cfg$debug == "true"
@@ -75,12 +78,19 @@ dequeueJobs <- function(package, directory, exclude="") {
                 if (verbose) cat("Downloaded ", pkgfile, "\n")
             }
 
-            cmd <- paste(.pkgenv[["xvfb"]],
-                         "R",  		       # R or maybe RD
-                         " CMD check --no-manual --no-vignettes ", pkgfile, " 2>&1 > ",
-                         pkgfile, ".log", sep="")
-            if (debug) print(cmd)
-            rc <- system(cmd)
+            cmd <- "R"
+            args <- c("CMD", "check", "--no-manual", "--no-vignettes", pkgfile)
+            if (.pkgenv[["xvfb"]] != "") {
+                splits <- strsplit(.pkgenv[["xvfb"]], " ")[[1]]
+                args <- c(splits[-1], cmd, args)
+                cmd <- splits[1]
+            }
+            logfile <- paste0(pkgfile, ".log")
+            if (debug) {
+                print(cmd)
+                print(args)
+            }
+            rc <- system2(cmd, args=args, env=env, stdout=logfile, stderr=logfile)
             if (debug) print(rc)
 
             setwd(cwd)

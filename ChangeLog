@@ -1,8 +1,10 @@
 2018-01-20  Dirk Eddelbuettel  <edd@debian.org>
 
-	* inst/scripts/xvfb-run-safe: No longer use $HOME (#2)
+	* R/dequeue.R (dequeueJobs): Now uses system2() instead
 
 	* R/enqueue.R (enqueueJobs): Consider more repos than just CRAN (#4)
+
+	* inst/scripts/xvfb-run-safe: No longer use $HOME (#2)
 
 2018-01-19  Dirk Eddelbuettel  <edd@debian.org>
 

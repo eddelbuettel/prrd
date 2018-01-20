@@ -13,6 +13,7 @@
     (\ghit{3}).
     \item The set of available packages is no longer constrained to
     CRAN, but could be via the local setup script (\ghit{4}).
+    \item The \code{dequeue()} function now uses \code{system2()}.
   }
 }
 

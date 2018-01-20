@@ -1,4 +1,6 @@
 
+.pkgenv <- new.env(parent=emptyenv())
+
 ##' @rdname getDataDirectory
 runSanityChecks <- function() {
 
