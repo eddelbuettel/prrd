@@ -1,9 +1,13 @@
 #!/bin/bash
 #
 # cf http://stackoverflow.com/a/30336424/143305
+# plus one change as noted below
 
 # allow settings to be updated via environment
-: "${xvfb_lockdir:=$HOME/.xvfb-locks}"
+### make CRAN happy and avoid $HOME
+##     : "${xvfb_lockdir:=$HOME/.xvfb-locks}"
+### feel free to revert in local installations
+: "${xvfb_lockdir:=/tmp/.xvfb-locks-$USER}"
 : "${xvfb_display_min:=99}"
 : "${xvfb_display_max:=599}"
 
