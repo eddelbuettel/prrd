@@ -40,6 +40,7 @@ dequeueJobs <- function(package, directory, exclude="") {
             if (!dir.exists(cfg$libdir)) {
                 dir.create(cfg$libdir)
             }
+        }
         if ("verbose" %in% names(cfg)) verbose <- cfg$verbose == "true"
         if ("debug" %in% names(cfg)) debug <- cfg$debug == "true"
     }
@@ -75,7 +76,6 @@ dequeueJobs <- function(package, directory, exclude="") {
             }
 
             cmd <- paste(.pkgenv[["xvfb"]],
-            cmd <- paste("xvfb-run-safe --server-args=\"-screen 0 1024x768x24\" ",
                          "R",  		       # R or maybe RD
                          " CMD check --no-manual --no-vignettes ", pkgfile, " 2>&1 > ",
                          pkgfile, ".log", sep="")
@@ -122,3 +122,5 @@ dequeueJobs <- function(package, directory, exclude="") {
     dbDisconnect(con)
     lst
 }
+
+globalVariables(c(".pkgenv")) # pacify R CMD check
