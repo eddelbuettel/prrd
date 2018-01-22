@@ -42,4 +42,46 @@ enqueueJobs <- function(package, directory) {
     list_messages(q)
 }
 
+##' @rdname enqueueJobs
+enqueueDepends <- function(package, directory) {
+    if (!is.null(cfg <- getConfig())) {
+        if ("setup" %in% names(cfg)) source(cfg$setup)
+        if ("libdir" %in% names(cfg)) {
+            .libPaths(cfg$libdir)
+            Sys.setenv("R_LIBS_USER"=cfg$libdir)
+            if (!dir.exists(cfg$libdir)) {
+                dir.create(cfg$libdir)
+            }
+        }
+    }
+
+    ## available package at CRAN and/or elsewhere
+    ## use cfg$setup to override/extend with additional (local) repos
+    AP <- available.packages(filters=list())
+
+    pkgset <- dependsOnPkgs(package, recursive=FALSE, installed=AP)
+
+    AP <- setDT(as.data.frame(AP))
+    pkgset <- setDT(data.frame(Package=pkgset))
+
+    work <- AP[pkgset, on="Package"][,1:2]
+
+    deplst <- package_dependencies(as.character(work[[1]]), db=as.matrix(AP), recursive=TRUE)
+    deppkg <- unique(sort(do.call(c, deplst)))
+    IP <- installed.packages()
+    needed <- setdiff(deppkg, IP[, "Package"])
+
+    db <- getQueueFile(package=package, path=directory)
+    q <- ensure_queue("depends", db = db)
+
+    n <- length(needed)
+    for (i in 1:n) {
+        ttl <- paste0(needed[i])
+        msg <- paste(needed[i])
+        publish(q, title = ttl, message = msg)
+    }
+
+    list_messages(q)
+}
+
 globalVariables(c("Package", "Version")) # pacify R CMD check

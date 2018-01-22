@@ -2,9 +2,12 @@
 % Please edit documentation in R/dequeue.R
 \name{dequeueJobs}
 \alias{dequeueJobs}
+\alias{dequeueDepends}
 \title{Dequeue and run reverse-dependency checks, possibly in parallel}
 \usage{
 dequeueJobs(package, directory, exclude = "")
+
+dequeueDepends(package, directory)
 }
 \arguments{
 \item{package}{A character variable denoting a package}

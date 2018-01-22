@@ -1,3 +1,16 @@
+2018-01-22  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/enqueue.R (enqueueDepends): New (still experimental) helper
+	function to enqueue (aggregate) dependencies
+
+	* R/dequeue.R (dequeueDepends):  New (still experimental) helper
+	function to dequeue (aggregate) dependencies
+
+	* man/dequeueJobs.Rd: Documentation
+	* man/enqueueJobs.Rd: Ditto
+
+	* NAMESPACE: Added two imports from 'utils' plus one from 'tools'
+
 2018-01-20  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/dequeue.R (dequeueJobs): Now uses system2() instead

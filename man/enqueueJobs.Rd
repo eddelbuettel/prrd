@@ -2,9 +2,12 @@
 % Please edit documentation in R/enqueue.R
 \name{enqueueJobs}
 \alias{enqueueJobs}
+\alias{enqueueDepends}
 \title{Enqueues reverse-dependent packages}
 \usage{
 enqueueJobs(package, directory)
+
+enqueueDepends(package, directory)
 }
 \arguments{
 \item{package}{A character variable denoting a package}

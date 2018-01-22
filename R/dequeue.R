@@ -133,4 +133,33 @@ dequeueJobs <- function(package, directory, exclude="") {
     lst
 }
 
+##' @rdname dequeueJobs
+dequeueDepends <- function(package, directory) {
+    db <- getQueueFile(package=package, path=directory)
+    q <- ensure_queue("depends", db = db)
+
+    if (!is.null(cfg <- getConfig())) {
+        if ("setup" %in% names(cfg)) source(cfg$setup)
+        if ("libdir" %in% names(cfg)) {
+            .libPaths(cfg$libdir)
+            Sys.setenv("R_LIBS_USER"=cfg$libdir)
+            if (!dir.exists(cfg$libdir)) {
+                dir.create(cfg$libdir)
+            }
+        }
+    }
+
+
+    ## work down messages, if any
+    while (!is.null(msg <- try_consume(q))) {
+        pkg <- msg$message
+        try(install.packages(pkg)) # rc is useless
+        ack(msg)
+    }
+    requeue_failed_messages(q)
+    lst <- list_messages(q)
+    lst
+}
+
+
 globalVariables(c(".pkgenv")) # pacify R CMD check
