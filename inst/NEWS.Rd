@@ -14,6 +14,8 @@
     \item The set of available packages is no longer constrained to
     CRAN, but could be via the local setup script (\ghit{4}).
     \item The \code{dequeue()} function now uses \code{system2()}.
+    \item The \code{enqueue()} functions checks if no reverse
+    dependencies are found and stops (\ghit{6}).
   }
 }
 

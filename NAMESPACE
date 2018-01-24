@@ -7,6 +7,6 @@ importFrom("liteq", "ensure_queue", "publish", "list_messages",
            "try_consume", "ack", "requeue_failed_messages")
 importFrom("DBI", "dbConnect", "dbExecute", "dbWriteTable", "dbGetQuery", "dbDisconnect")
 importFrom("crayon", "red", "green", "blue")
-importFrom("data.table", "setDT")
+importFrom("data.table", "setDT", "data.table")
 importFrom("RSQLite", "SQLite")
 importFrom("config", "get")

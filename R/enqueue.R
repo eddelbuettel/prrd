@@ -23,9 +23,10 @@ enqueueJobs <- function(package, directory) {
     AP <- available.packages(filters=list())
 
     pkgset <- dependsOnPkgs(package, recursive=FALSE, installed=AP)
+    if (length(pkgset) == 0) stop("No dependencies for ", package, call.=FALSE)
 
     AP <- setDT(as.data.frame(AP))
-    pkgset <- setDT(data.frame(Package=pkgset))
+    pkgset <- data.table(Package=pkgset)
 
     work <- AP[pkgset, on="Package"][,1:2]
 
