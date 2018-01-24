@@ -18,6 +18,8 @@ enqueueJobs <- function(package, directory) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
     }
 
+    runEnqueueSanityChecks()              # currenly repos only
+
     ## available package at CRAN and/or elsewhere
     ## use cfg$setup to override/extend with additional (local) repos
     AP <- available.packages(filters=list())

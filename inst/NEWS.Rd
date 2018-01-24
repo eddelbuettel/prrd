@@ -16,6 +16,8 @@
     \item The \code{dequeue()} function now uses \code{system2()}.
     \item The \code{enqueue()} functions checks if no reverse
     dependencies are found and stops (\ghit{6}).
+    \item The \code{enqueue()} functions checks for repository
+    information being set (\ghit{5}).
   }
 }
 

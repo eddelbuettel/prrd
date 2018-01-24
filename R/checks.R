@@ -24,3 +24,16 @@ runSanityChecks <- function() {
     NULL
 
 }
+
+
+##' @rdname getDataDirectory
+runEnqueueSanityChecks <- function() {
+    cran <- getOption("repos")[["CRAN"]]
+    if (cran == "@CRAN@") {
+        stop("\tNo default CRAN mirror set, so cannot download package information.\n\t",
+             "See 'help(\"setRepositories\")' as well as 'help(\"option\")' for its 'cran' entry.",
+             call.=FALSE)
+    }
+
+    NULL
+}

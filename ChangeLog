@@ -1,6 +1,12 @@
+2018-01-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/checks.R (runEnqueueSanityChecks): New helper function
+	* R/enqueue.R (enqueueJobs): Call new helper function
+	* man/getDataDirectory.Rd: Added documentation
+
 2018-01-23  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/enqueue.R (enqueueJobs): Quit if no reverse dependencies 
+	* R/enqueue.R (enqueueJobs): Quit if no reverse dependencies
 
 2018-01-22  Dirk Eddelbuettel  <edd@debian.org>
 

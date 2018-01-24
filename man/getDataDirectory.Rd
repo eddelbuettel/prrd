@@ -2,6 +2,7 @@
 % Please edit documentation in R/checks.R, R/utils.R
 \name{runSanityChecks}
 \alias{runSanityChecks}
+\alias{runEnqueueSanityChecks}
 \alias{getDataDirectory}
 \alias{getQueueFile}
 \alias{getConfig}
@@ -9,6 +10,8 @@
 \title{Various Helper Functions}
 \usage{
 runSanityChecks()
+
+runEnqueueSanityChecks()
 
 getDataDirectory(package, date = format(Sys.Date()), path = ".",
   sep = "_")
