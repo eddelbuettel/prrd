@@ -3,10 +3,10 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/prrd/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/prrd/issues/#1}{##1}}
 
-\section{Changes in prrd version 0.0.2 (2018-01-xx)}{
+\section{Changes in prrd version 0.0.2 (2018-01-24)}{
   \itemize{
-    \item No longer require \code{wget}.
-    \item Enhance sanity checker function.
+    \item The package no longer require \code{wget}.
+    \item Enhanced sanity checker function.
     \item Expanded and improved dequeue function.
     \item No longer use \code{$HOME} in \code{xvfb-run-safe} (\ghit{2}).
     \item The use of \code{xvfb-run} use is now conditional on the OS
