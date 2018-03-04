@@ -15,7 +15,7 @@ if (opt$usage) {
   enqueueJobs.r Rcpp
 
 enqueueJobs.r is part of prrd.r which is becoming a parallel rev dep runner.
-See http://dirk.eddelbuettel.com/code/...TBD.... for more information.\n")
+See http://dirk.eddelbuettel.com/code/prrd.html for more information.\n")
     q("no")
 }
 
