@@ -6,7 +6,7 @@
 ##' file is on a network drive, this should may also work across multiple machines.
 ##' @title Dequeue and run reverse-dependency checks, possibly in parallel
 ##' @param package A character variable denoting a package
-##' @param directory A character variable denoting a directory
+##' @param directory A character variable denoting a directory for the queuefile
 ##' @param exclude An optional character variable denoting an exclusion set csv file.
 ##' @return A queue is create as a side effect, its elements are returned invisibly
 ##' @author Dirk Eddelbuettel
