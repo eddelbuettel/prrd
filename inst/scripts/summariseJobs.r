@@ -1,9 +1,10 @@
 #!/usr/bin/env r
 #
 ## configuration for docopt
-doc <- "Usage: summarizeJobs.r [-p PACKAGE] [-h] [-x] QUEUEFILE
+doc <- "Usage: summarizeJobs.r [-p PACKAGE] [-e] [-h] [-x] QUEUEFILE
 
 -p --package PACKAGE  name used in output text [default: unknown]
+-e --extended         run extended summary looking at failures [default: false]
 -h --help             show this help text
 -x --usage            show help and short example usage"
 
@@ -19,4 +20,4 @@ See http://dirk.eddelbuettel.com/code/...TBD.... for more information.\n")
     q("no")
 }
 
-prrd::summariseQueue(opt$package, "", dbfile=opt$QUEUEFILE)
+prrd::summariseQueue(opt$package, "", dbfile=opt$QUEUEFILE, extended=opt$extended)

@@ -6,9 +6,11 @@
 ##' @param directory A character variable denoting a directory
 ##' @param dbfile A character variable for an optional override which, if
 ##' present, is used over \sQuote{package} and \sQuote{directory}.
+##' @param extended A boolean variable to select extended analysis of
+##' failures, default is \code{FALSE} which skips this.
 ##' @return NULL, invisibly
 ##' @author Dirk Eddelbuettel
-summariseQueue <- function(package, directory, dbfile="") {
+summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
     if (dbfile != "") {
         if (file.exists(dbfile)) {
             db <- dbfile
@@ -36,7 +38,7 @@ summariseQueue <- function(package, directory, dbfile="") {
     cat("Average of", round(dts/nrow(res), digits=3), "secs relative to",
         format(round(res[, mean(runtime)], digits=3)), "secs using",
         nrow(res[, .N, by=runner]), "runners\n")
-    cat("\nFailed packages: ", paste(res[result==1, .(package)][[1]], collapse=", "), "\n")
+    cat("\nFailed packages: ", paste(unique(sort(res[result==1, .(package)][[1]])), collapse=", "), "\n")
     cat("\nSkipped packages: ", paste(res[result==2, .(package)][[1]], collapse=", "), "\n")
     cat("\n")
     if (jobs[status=="WORKING",.N] > 0) {
@@ -50,9 +52,87 @@ summariseQueue <- function(package, directory, dbfile="") {
     } else {
         cat("None still scheduled\n")
     }
+
+    if (extended) .runExtended(res)
+
     invisible(res)
 }
 
+.checkfile <- function(wd, pkg) file.path(wd, paste0(pkg, ".Rcheck"), "00check.log")
+
+.installfile <- function(wd, pkg) file.path(wd, paste0(pkg, ".Rcheck"), "00install.out")
+
+.grepMissing <- function(wd, pkg) {
+    lines <- readLines(.checkfile(wd, pkg))
+    ind <- grep("there is no package called", lines)
+    if (length(ind) == 0) return("")
+    if (length(ind) >= 2) ind <- ind[1]
+    ll <- lines[ind]
+    gsub(".*there is no package called ", "", ll)
+}
+
+.grepRequired <- function(wd, pkg) {
+    lines <- readLines(.checkfile(wd, pkg))
+    ind <- grep("Package.* required but not available", lines)
+    if (length(ind) == 0) return("")
+    if (length(ind) >= 2) ind <- ind[1]
+    ll <- lines[ind]
+    gsub(".*but not available: ", "", ll)
+}
+
+.grepNeeded <- function(wd, pkg) {
+    lines <- readLines(.checkfile(wd, pkg))
+    ind <- grep("package.* need.*", lines)
+    if (length(ind) == 0) return("")
+    if (length(ind) >= 2) ind <- ind[1]
+    ll <- lines[ind]
+}
+
+.grepInstallationFailed <- function(wd, pkg) {
+    lines <- readLines(.checkfile(wd, pkg))
+    ind <- any(grepl("Installation failed", lines))
+}
+
+.runExtended <- function(res) {
+    options("width"=200)
+
+    if (!is.null(cfg <- getConfig())) {
+        if ("setup" %in% names(cfg)) source(cfg$setup)
+        if ("workdir" %in% names(cfg)) {
+            wd <- cfg$workdir
+            if (!dir.exists(wd)) {
+                dir.create(wd)
+            }
+        }
+        if ("libdir" %in% names(cfg)) {
+            ## setting the environment variable works with littler, but not with RScript
+            Sys.setenv("R_LIBS_USER"=cfg$libdir)
+            if (!dir.exists(cfg$libdir)) {
+                dir.create(cfg$libdir)
+            }
+            env <- paste0("R_LIBS=\"", cfg$libdir, "\"")
+        }
+        if ("verbose" %in% names(cfg)) verbose <- cfg$verbose == "true"
+        if ("debug" %in% names(cfg)) debug <- cfg$debug == "true"
+    }
+
+    failed <- res[result==1, .(package=unique(sort(package)))]
+
+    failed[ , `:=`(hasCheckLog=file.exists(.checkfile(wd, package)),
+                   hasInstallLog=file.exists(.installfile(wd, package))), by=package]
+
+    failed[hasCheckLog==TRUE & hasInstallLog==TRUE, missingPkg:=.grepMissing(wd, package), by=package]
+
+    failed[hasCheckLog==TRUE & hasInstallLog==FALSE, missingPkg:=.grepRequired(wd, package), by=package]
+
+    failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", missingPkg:=.grepNeeded(wd, package), by=package]
+
+    failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", badInstall:=.grepInstallationFailed(wd, package), by=package]
+
+    print(failed[ missingPkg=="" & badInstall==TRUE,])
+    ##print(failed[hasCheckLog==TRUE & hasInstallLog==FALSE, ])
+    #print(failed)
+}
 
 ## make R CMD check happy
 globalVariables(c(".", ".N", "result", "starttime", "endtime",
