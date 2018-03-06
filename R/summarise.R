@@ -129,8 +129,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
 
     failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", badInstall:=.grepInstallationFailed(wd, package), by=package]
 
-    #print(failed[ missingPkg=="" & badInstall==TRUE,])
-    ##print(failed[hasCheckLog==TRUE & hasInstallLog==FALSE, ])
+    cat("\nError summary:\n")
     print(failed[, -c(2:3)])
     invisible(failed)
 }
