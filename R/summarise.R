@@ -129,9 +129,10 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
 
     failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", badInstall:=.grepInstallationFailed(wd, package), by=package]
 
-    print(failed[ missingPkg=="" & badInstall==TRUE,])
+    #print(failed[ missingPkg=="" & badInstall==TRUE,])
     ##print(failed[hasCheckLog==TRUE & hasInstallLog==FALSE, ])
-    #print(failed)
+    print(failed[, -c(2:3)])
+    invisible(failed)
 }
 
 ## make R CMD check happy
