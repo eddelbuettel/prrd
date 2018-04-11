@@ -73,6 +73,10 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
 
 .grepRequired <- function(wd, pkg) {
     lines <- readLines(.checkfile(wd, pkg))
+    if (any(lines == "Packages required but not available:")) {
+        ind <- which("Packages required but not available:" == lines)
+        return(lines[ind+1])
+    }
     ind <- grep("Package.* required but not available", lines)
     if (length(ind) == 0) return("")
     if (length(ind) >= 2) ind <- ind[1]

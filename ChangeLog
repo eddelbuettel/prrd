@@ -1,3 +1,9 @@
+2018-04-11  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Date, Version): New minor version
+
+	* R/summarise.R: Another case of missing packages in log
+
 2018-03-06  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/summarise.R: Nicer printout of optional extended summary
