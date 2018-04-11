@@ -53,8 +53,10 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
         cat("None still scheduled\n")
     }
 
-    if (extended) .runExtended(res)
-
+    if (extended) {
+        ext <- .runExtended(res)
+        invisible(return(list(res=res, ext=ext)))
+    }
     invisible(res)
 }
 
@@ -98,7 +100,6 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
 }
 
 .runExtended <- function(res) {
-    options("width"=200)
 
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
@@ -132,6 +133,13 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
     failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", missingPkg:=.grepNeeded(wd, package), by=package]
 
     failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", badInstall:=.grepInstallationFailed(wd, package), by=package]
+
+    if (requireNamespace("foghorn", quietly=TRUE)) {
+        failed[badInstall==FALSE,
+	       c("error", "fail", "warn", "note", "ok", "hasOtherIssue") :=
+	         data.frame( foghorn::cran_results(pkg=package)[1,-1] ),
+	       by=package]
+    }
 
     cat("\nError summary:\n")
     print(failed[, -c(2:3)])

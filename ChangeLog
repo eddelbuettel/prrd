@@ -2,7 +2,10 @@
 
 	* DESCRIPTION (Date, Version): New minor version
 
-	* R/summarise.R: Another case of missing packages in log
+	* R/summarise.R: Another case of missing packages in log; use
+	foghorn::cran_results() in extended mode if available
+
+	* DESCRIPTION (Suggests): Add foghorn
 
 2018-03-06  Dirk Eddelbuettel  <edd@debian.org>
 

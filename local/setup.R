@@ -1,5 +1,5 @@
 
-options("width"=100,
+options("width"=200,
         "digits.secs"=2)
 
 r <- character()
