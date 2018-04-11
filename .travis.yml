@@ -13,8 +13,8 @@ before_install:
   - ./run.sh bootstrap
 
 install:
-  - ./run.sh install_aptget r-cran-config r-cran-data.table r-cran-crayon r-cran-dbi r-cran-rsqlite r-cran-assertthat r-cran-rappdirs r-cran-docopt
-  - ./run.sh install_r liteq
+  - ./run.sh install_aptget r-cran-config r-cran-data.table r-cran-crayon r-cran-dbi r-cran-rsqlite r-cran-assertthat r-cran-rappdirs r-cran-docopt r-cran-httr r-cran-curl r-cran-jsonlite r-cran-rvest r-cran-tibble r-cran-xml2
+  - ./run.sh install_r liteq foghorn
 
 script:
   - ./run.sh run_tests

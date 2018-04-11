@@ -7,6 +7,8 @@
 
 	* DESCRIPTION (Suggests): Add foghorn
 
+	* .travis.yml (install): Also install foghorn (and its depends)
+
 2018-03-06  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/summarise.R: Nicer printout of optional extended summary
