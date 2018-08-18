@@ -10,7 +10,7 @@
 ##' @param exclude An optional character variable denoting an exclusion set csv file.
 ##' @return A queue is create as a side effect, its elements are returned invisibly
 ##' @author Dirk Eddelbuettel
-dequeueJobs <- function(package, directory, exclude="") {
+dequeueJobs <- function(package, directory, exclude=NULL) {
 
     runSanityChecks()                       # (currently) checks (only) for xvfb-run-safe
 
@@ -49,7 +49,7 @@ dequeueJobs <- function(package, directory, exclude="") {
     }
 
     good <- bad <- skipped <- 0
-    exclset <- if (exclude != "") getExclusionSet(exclude) else character()
+    exclset <- if (!is.null(exclude)) getExclusionSet(exclude) else character()
     if (verbose) print(exclset)
 
     ## work down messages, if any

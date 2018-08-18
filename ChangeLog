@@ -1,3 +1,13 @@
+2018-08-12  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/dequeue.R: Accomidate docopt change
+	* R/summarise.R: Idem
+	* local/setup.R: Idem
+
+2018-05-03  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/scripts/summariseJobs.r: Support foghorn
+
 2018-04-11  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Date, Version): New minor version

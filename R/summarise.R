@@ -10,7 +10,7 @@
 ##' failures, default is \code{FALSE} which skips this.
 ##' @return NULL, invisibly
 ##' @author Dirk Eddelbuettel
-summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
+summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghorn=FALSE) {
     if (dbfile != "") {
         if (file.exists(dbfile)) {
             db <- dbfile
@@ -25,6 +25,10 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
     jobs <- setDT(dbGetQuery(con, "select * from qqjobs"))
     dbDisconnect(con)
 
+    if (nrow(res) == 0) {		    # if started before any results logged 
+       return(invisible(res))
+    }			
+    
     cat("Test of", package, "had",
         res[result==0,.N], "successes,",
         res[result==1,.N], "failures, and",
@@ -54,7 +58,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
     }
 
     if (extended) {
-        ext <- .runExtended(res)
+        ext <- .runExtended(res, foghorn)
         invisible(return(list(res=res, ext=ext)))
     }
     invisible(res)
@@ -99,7 +103,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
     ind <- any(grepl("Installation failed", lines))
 }
 
-.runExtended <- function(res) {
+.runExtended <- function(res, foghorn=FALSE) {
 
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
@@ -134,7 +138,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE) {
 
     failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", badInstall:=.grepInstallationFailed(wd, package), by=package]
 
-    if (requireNamespace("foghorn", quietly=TRUE)) {
+    if (foghorn && requireNamespace("foghorn", quietly=TRUE)) {
         failed[badInstall==FALSE,
 	       c("error", "fail", "warn", "note", "ok", "hasOtherIssue") :=
 	         data.frame( foghorn::cran_results(pkg=package)[1,-1] ),
