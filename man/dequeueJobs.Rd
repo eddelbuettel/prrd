@@ -5,7 +5,7 @@
 \alias{dequeueDepends}
 \title{Dequeue and run reverse-dependency checks, possibly in parallel}
 \usage{
-dequeueJobs(package, directory, exclude = "")
+dequeueJobs(package, directory, exclude = NULL)
 
 dequeueDepends(package, directory)
 }

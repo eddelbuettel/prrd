@@ -4,7 +4,8 @@
 \alias{summariseQueue}
 \title{Summarisse results from a reverse-dependency check}
 \usage{
-summariseQueue(package, directory, dbfile = "", extended = FALSE)
+summariseQueue(package, directory, dbfile = "", extended = FALSE,
+  foghorn = FALSE)
 }
 \arguments{
 \item{package}{A character variable denoting a package}
@@ -16,6 +17,10 @@ present, is used over \sQuote{package} and \sQuote{directory}.}
 
 \item{extended}{A boolean variable to select extended analysis of
 failures, default is \code{FALSE} which skips this.}
+
+\item{foghorn}{A boolean variable to invoke the \CRANpkg{foghorn} to
+retrieve and review CRAN result status, default is \code{FALSE} which
+skips this.}
 }
 \value{
 NULL, invisibly

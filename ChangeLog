@@ -1,3 +1,8 @@
+2018-08-18  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/summarise.R: Document foghorn argument
+	* man/summariseQueue.Rd: Idem
+
 2018-08-12  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/dequeue.R: Accomidate docopt change

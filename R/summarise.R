@@ -8,6 +8,9 @@
 ##' present, is used over \sQuote{package} and \sQuote{directory}.
 ##' @param extended A boolean variable to select extended analysis of
 ##' failures, default is \code{FALSE} which skips this.
+##' @param foghorn A boolean variable to invoke the \CRANpkg{foghorn} to
+##' retrieve and review CRAN result status, default is \code{FALSE} which
+##' skips this.
 ##' @return NULL, invisibly
 ##' @author Dirk Eddelbuettel
 summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghorn=FALSE) {
@@ -25,10 +28,10 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
     jobs <- setDT(dbGetQuery(con, "select * from qqjobs"))
     dbDisconnect(con)
 
-    if (nrow(res) == 0) {		    # if started before any results logged 
+    if (nrow(res) == 0) {		    # if started before any results logged
        return(invisible(res))
-    }			
-    
+    }
+
     cat("Test of", package, "had",
         res[result==0,.N], "successes,",
         res[result==1,.N], "failures, and",
@@ -152,4 +155,6 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
 
 ## make R CMD check happy
 globalVariables(c(".", ".N", "result", "starttime", "endtime",
-                  "times", "runtime", "runner", "status"))
+                  "times", "runtime", "runner", "status",
+                  ":=", "badInstall", "hasCheckLog", "hasInstallLog",
+                  "missingPkg", "package"))

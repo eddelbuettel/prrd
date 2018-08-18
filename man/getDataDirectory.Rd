@@ -16,7 +16,8 @@ runEnqueueSanityChecks()
 getDataDirectory(package, date = format(Sys.Date()), path = ".",
   sep = "_")
 
-getQueueFile(package, date = format(Sys.Date()), path = ".", sep = "_")
+getQueueFile(package, date = format(Sys.Date()), path = ".",
+  sep = "_")
 
 getConfig(debug = FALSE)
 
