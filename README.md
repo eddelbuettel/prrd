@@ -105,7 +105,10 @@ While the package is new, it has already been used for a few complete reverse de
 
 ### Installation
 
-The package is not yet on CRAN, but may be uploaded "soon".
+The package is now on [CRAN](https://cran.r-project.org/) and can be installed via a standard
+```
+install.packages("prrd")
+```
 
 ### Authors
 
