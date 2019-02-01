@@ -19,4 +19,4 @@ See http://dirk.eddelbuettel.com/code/prrd.html for more information.\n")
     q("no")
 }
 
-prrd::enqueueJobs(opt$PACKAGE, opt$queue)
+prrd::enqueueDepends(opt$PACKAGE, opt$queue)

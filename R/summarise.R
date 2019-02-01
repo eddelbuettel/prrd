@@ -60,7 +60,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
         cat("None still scheduled\n")
     }
 
-    if (extended) {
+    if (extended && (res[result==0,.N] > 0)) {
         ext <- .runExtended(res, foghorn)
         invisible(return(list(res=res, ext=ext)))
     }
@@ -144,7 +144,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
     if (foghorn && requireNamespace("foghorn", quietly=TRUE)) {
         failed[badInstall==FALSE,
 	       c("error", "fail", "warn", "note", "ok", "hasOtherIssue") :=
-	         data.frame( foghorn::cran_results(pkg=package)[1,-1] ),
+	         data.frame( foghorn::cran_results(pkg=package)[1,-1], src="crandb" ),
 	       by=package]
     }
 

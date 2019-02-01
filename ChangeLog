@@ -1,3 +1,9 @@
+2019-02-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/scripts/enqueueDepends.r: Correct script being called
+
+	* R/summarise.R: Two small robustifications
+
 2018-09-02  Dirk Eddelbuettel  <edd@debian.org>
 
 	* .travis.yml: Switch Travis CI to R 3.5 repo
@@ -9,7 +15,7 @@
 
 2018-08-12  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/dequeue.R: Accomidate docopt change
+	* R/dequeue.R: Accomodate docopt change
 	* R/summarise.R: Idem
 	* local/setup.R: Idem
 
