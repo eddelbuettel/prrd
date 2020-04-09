@@ -1,6 +1,10 @@
-## prrd  [![Build Status](https://travis-ci.org/eddelbuettel/prrd.svg)](https://travis-ci.org/eddelbuettel/prrd) [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html) [![CRAN](http://www.r-pkg.org/badges/version/prrd)](https://cran.r-project.org/package=prrd) [![Downloads](http://cranlogs.r-pkg.org/badges/prrd?color=brightgreen)](http://www.r-pkg.org/pkg/prrd)
-
-Parallel Running [of] Reverse Depends
+## prrd: Parallel Running [of] Reverse Depends
+ 
+[![Build Status](https://travis-ci.org/eddelbuettel/prrd.svg)](https://travis-ci.org/eddelbuettel/prrd)
+[![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
+[![CRAN](http://www.r-pkg.org/badges/version/prrd)](https://cran.r-project.org/package=prrd)
+[![Downloads](http://cranlogs.r-pkg.org/badges/prrd?color=brightgreen)](http://www.r-pkg.org/pkg/prrd)
+[![Last Commit](https://img.shields.io/github/last-commit/eddelbuettel/prrd)](https://github.com/eddelbuettel/prrd)
 
 ### Motivation
 

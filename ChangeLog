@@ -1,3 +1,11 @@
+2020-04-08  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Add 'last commit' badge
+
+2019-11-11  Dirk Eddelbuettel  <edd@debian.org>
+
+	* local/setup.R: Add "_R_CHECK_TESTS_NLINES_"="0"
+
 2019-02-01  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/scripts/enqueueDepends.r: Correct script being called
