@@ -1,5 +1,7 @@
 2020-04-18  Dirk Eddelbuettel  <edd@debian.org>
 
+	* DESCRIPTION (Date, Version): New minor version
+
 	* inst/scripts/dequeueDepends.r: Add queue option getter
 	* inst/scripts/enqueueDepends.r: Idem
 	* inst/scripts/enqueueJobs.r: Idem
