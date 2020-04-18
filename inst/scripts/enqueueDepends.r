@@ -3,7 +3,7 @@
 ## configuration for docopt
 doc <- paste0("Usage: enqueueDepends.r [-q QUEUE] [-h] [-x] PACKAGE
 
--q --queue QUEUE      set queue directory [default: '", getOption("prrd.queue_directory", "."), "']
+-q --queue QUEUE      set queue directory [default: ", getOption("prrd.queue_directory", "."), "]
 -h --help             show this help text
 -x --usage            show help and short example usage")
 

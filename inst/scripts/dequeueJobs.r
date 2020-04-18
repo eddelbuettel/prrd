@@ -3,7 +3,7 @@
 ## configuration for docopt
 doc <- paste0("Usage: dequeueJobs.r [-q QUEUE] [-e EXCP] [-h] [-x] PACKAGE
 
--q --queue QUEUE      set queue directory [default: '", getOption("prrd.queue_directory", "."), "']
+-q --queue QUEUE      set queue directory [default: ", getOption("prrd.queue_directory", "."), "]
 -e --exclude EXCL     exclusion set filename [default: ]
 -h --help             show this help text
 -x --usage            show help and short example usage")
