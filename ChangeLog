@@ -1,3 +1,10 @@
+2020-04-18  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/scripts/dequeueDepends.r: Add queue option getter
+	* inst/scripts/enqueueDepends.r: Idem
+	* inst/scripts/enqueueJobs.r: Idem
+	* inst/scripts/dequeueJobs.r: Idem
+
 2020-04-08  Dirk Eddelbuettel  <edd@debian.org>
 
 	* README.md: Add 'last commit' badge

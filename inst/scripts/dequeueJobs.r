@@ -1,12 +1,12 @@
 #!/usr/bin/env r
 
 ## configuration for docopt
-doc <- "Usage: dequeueJobs.r [-q QUEUE] [-e EXCP] [-h] [-x] PACKAGE
+doc <- paste0("Usage: dequeueJobs.r [-q QUEUE] [-e EXCP] [-h] [-x] PACKAGE
 
--q --queue QUEUE      set queue directory [default: .]
+-q --queue QUEUE      set queue directory [default: '", getOption("prrd.queue_directory", "."), "']
 -e --exclude EXCL     exclusion set filename [default: ]
 -h --help             show this help text
--x --usage            show help and short example usage"
+-x --usage            show help and short example usage")
 
 opt <- docopt::docopt(doc)              # docopt parsing
 

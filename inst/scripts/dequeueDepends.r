@@ -1,11 +1,11 @@
 #!/usr/bin/env r
 
 ## configuration for docopt
-doc <- "Usage: dequeueDepends.r [-q QUEUE] [-h] [-x] PACKAGE
+doc <- paste0("Usage: dequeueDepends.r [-q QUEUE] [-h] [-x] PACKAGE
 
--q --queue QUEUE      set queue directory [default: .]
+-q --queue QUEUE      set queue directory [default: '", getOption("prrd.queue_directory", "."), "']
 -h --help             show this help text
--x --usage            show help and short example usage"
+-x --usage            show help and short example usage")
 
 opt <- docopt::docopt(doc)              # docopt parsing
 
