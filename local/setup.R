@@ -6,8 +6,10 @@ r <- character()
 r["CRAN"] <- "https://cloud.r-project.org"
 options(repos = r)
 
-if (exists("opt") && "exclude" %in% names(opt) &&
-    is.null(opt$exclude) && file.exists("~/git/rcpp-logs/data/blacklist.csv")) {
+if (exists("opt") &&
+    "exclude" %in% names(opt) &&
+    is.null(opt$exclude) &&
+    file.exists("~/git/rcpp-logs/data/blacklist.csv")) {
     opt$exclude <- "~/git/rcpp-logs/data/blacklist.csv"
 }
 
