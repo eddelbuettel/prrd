@@ -16,6 +16,13 @@ enqueueJobs <- function(package, directory) {
 
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
+        if ("libdir" %in% names(cfg)) {
+            .libPaths(cfg$libdir)
+            Sys.setenv("R_LIBS_USER"=cfg$libdir)
+            if (!dir.exists(cfg$libdir)) {
+                dir.create(cfg$libdir)
+            }
+        }
     }
 
     runEnqueueSanityChecks()              # currenly repos only
@@ -35,6 +42,15 @@ enqueueJobs <- function(package, directory) {
     db <- getQueueFile(package=package, path=directory)
     q <- ensure_queue("jobs", db = db)
 
+    ## next line just to check .libPaths(), not needed here
+    #IP <- installed.packages(filters=list())
+
+    con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
+    createRunDataTable(con)
+    dat <- data.frame(package=package, version=format(packageVersion(package)), date=format(Sys.Date()))
+    dbWriteTable(con, "metadata", dat, append=TRUE)
+    dbDisconnect(con)
+    
     n <- nrow(work)
     for (i in 1:n) {
         ttl <- paste0(work[i,Package])

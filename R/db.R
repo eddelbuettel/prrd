@@ -51,3 +51,14 @@ insertRow <- function(con, df) {
     dbExecute(con, "COMMIT")
     NULL
 }
+
+##' @rdname getDatabaseConnection
+createRunDataTable <- function(con) {
+    dbExecute(con, "BEGIN EXCLUSIVE")
+    sql <- 'CREATE TABLE IF NOT EXISTS metadata (
+       package   TEXT,
+       version   TEXT,
+       date      DATE);'
+    dbExecute(con, sql)
+    dbExecute(con, "COMMIT")
+}

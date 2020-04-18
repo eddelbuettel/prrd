@@ -26,13 +26,14 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
     con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
     res <- setDT(dbGetQuery(con, "select * from results"))
     jobs <- setDT(dbGetQuery(con, "select * from qqjobs"))
+    meta <- dbGetQuery(con, "select * from metadata")
     dbDisconnect(con)
 
     if (nrow(res) == 0) {		    # if started before any results logged
        return(invisible(res))
     }
 
-    cat("Test of", package, "had",
+    cat("Test of", meta[1,"package"], "version", meta[1,"version"], "had",
         res[result==0,.N], "successes,",
         res[result==1,.N], "failures, and",
         res[result==2,.N], "skipped packages.",
