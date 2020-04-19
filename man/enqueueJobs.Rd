@@ -26,9 +26,11 @@ along with the \code{liteq} package. The \code{getQueueFile} function is used to
 determine the queue file directory and name.
 }
 \examples{
+\dontrun{
 td <- tempdir()
 options(repos=c(CRAN="https://cloud.r-project.org"))
 jobsdf <- enqueueJobs(package="digest", directory=td)
+}
 }
 \author{
 Dirk Eddelbuettel

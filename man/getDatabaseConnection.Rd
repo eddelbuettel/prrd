@@ -4,6 +4,7 @@
 \alias{getDatabaseConnection}
 \alias{createTable}
 \alias{insertRow}
+\alias{createRunDataTable}
 \title{Database Helper Functions}
 \usage{
 getDatabaseConnection(file)
@@ -11,6 +12,8 @@ getDatabaseConnection(file)
 createTable(con)
 
 insertRow(con, df)
+
+createRunDataTable(con)
 }
 \arguments{
 \item{file}{A character variable pointing to a sqlite3 file}

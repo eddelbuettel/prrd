@@ -2,7 +2,8 @@ exportPattern("^[[:alpha:]]+")
 importFrom("tools", "dependsOnPkgs", "package_dependencies")
 importFrom("utils", "read.csv", "available.packages", "contrib.url",
            "download.packages", "globalVariables",
-           "install.packages", "installed.packages")
+           "install.packages", "installed.packages",
+           "packageVersion")
 importFrom("liteq", "ensure_queue", "publish", "list_messages",
            "try_consume", "ack", "requeue_failed_messages")
 importFrom("DBI", "dbConnect", "dbExecute", "dbWriteTable", "dbGetQuery", "dbDisconnect")

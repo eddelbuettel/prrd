@@ -1,253 +1,262 @@
 2020-04-19  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/dequeue.R (dequeueJobs): Dequeuing now shows package and version at start
+        * R/dequeue.R: Dequeuing now shows package and version at start
+        * R/summarise.R: Minor summary tweak
+
+	* man/getDatabaseConnection.Rd: Alias createRunDataTable()
+	* man/enqueueJobs.Rd: Wrap \dontrun{} around example
 
 2020-04-18  Dirk Eddelbuettel  <edd@debian.org>
 
-	* DESCRIPTION (Date, Version): New minor version
+        * DESCRIPTION (Date, Version): New minor version
 
-	* inst/scripts/dequeueDepends.r: Add queue option getter
-	* inst/scripts/enqueueDepends.r: Idem
-	* inst/scripts/enqueueJobs.r: Idem
-	* inst/scripts/dequeueJobs.r: Idem
+        * inst/scripts/dequeueDepends.r: Add queue option getter
+        * inst/scripts/enqueueDepends.r: Idem
+        * inst/scripts/enqueueJobs.r: Idem
+        * inst/scripts/dequeueJobs.r: Idem
+
+	* R/db.R (createRunDataTable): New function to record meta data
+	* R/enqueue.R (enqueueJobs): Record meta data for run
+
+	* NAMESPACE: Import utils::packageVersion
 
 2020-04-08  Dirk Eddelbuettel  <edd@debian.org>
 
-	* README.md: Add 'last commit' badge
+        * README.md: Add 'last commit' badge
 
 2019-11-11  Dirk Eddelbuettel  <edd@debian.org>
 
-	* local/setup.R: Add "_R_CHECK_TESTS_NLINES_"="0"
+        * local/setup.R: Add "_R_CHECK_TESTS_NLINES_"="0"
 
 2019-02-01  Dirk Eddelbuettel  <edd@debian.org>
 
-	* inst/scripts/enqueueDepends.r: Correct script being called
+        * inst/scripts/enqueueDepends.r: Correct script being called
 
-	* R/summarise.R: Two small robustifications
+        * R/summarise.R: Two small robustifications
 
 2018-09-02  Dirk Eddelbuettel  <edd@debian.org>
 
-	* .travis.yml: Switch Travis CI to R 3.5 repo
+        * .travis.yml: Switch Travis CI to R 3.5 repo
 
 2018-08-18  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/summarise.R: Document foghorn argument
-	* man/summariseQueue.Rd: Idem
+        * R/summarise.R: Document foghorn argument
+        * man/summariseQueue.Rd: Idem
 
 2018-08-12  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/dequeue.R: Accomodate docopt change
-	* R/summarise.R: Idem
-	* local/setup.R: Idem
+        * R/dequeue.R: Accomodate docopt change
+        * R/summarise.R: Idem
+        * local/setup.R: Idem
 
 2018-05-03  Dirk Eddelbuettel  <edd@debian.org>
 
-	* inst/scripts/summariseJobs.r: Support foghorn
+        * inst/scripts/summariseJobs.r: Support foghorn
 
 2018-04-11  Dirk Eddelbuettel  <edd@debian.org>
 
-	* DESCRIPTION (Date, Version): New minor version
+        * DESCRIPTION (Date, Version): New minor version
 
-	* R/summarise.R: Another case of missing packages in log; use
-	foghorn::cran_results() in extended mode if available
+        * R/summarise.R: Another case of missing packages in log; use
+        foghorn::cran_results() in extended mode if available
 
-	* DESCRIPTION (Suggests): Add foghorn
+        * DESCRIPTION (Suggests): Add foghorn
 
-	* .travis.yml (install): Also install foghorn (and its depends)
+        * .travis.yml (install): Also install foghorn (and its depends)
 
 2018-03-06  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/summarise.R: Nicer printout of optional extended summary
+        * R/summarise.R: Nicer printout of optional extended summary
 
 2018-03-04  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/summarise.R: Optional extended summary of failures
-	* inst/scripts/summariseJobs.r: Front-end script
+        * R/summarise.R: Optional extended summary of failures
+        * inst/scripts/summariseJobs.r: Front-end script
 
-	* inst/scripts/enqeueDepends.r: New script for depends
-	* inst/scripts/deqeueDepends.r: Ditto
+        * inst/scripts/enqeueDepends.r: New script for depends
+        * inst/scripts/deqeueDepends.r: Ditto
 
 2018-01-25  Dirk Eddelbuettel  <edd@debian.org>
 
-	* DESCRIPTION (Version, Date): Release 0.0.2
+        * DESCRIPTION (Version, Date): Release 0.0.2
 
 2018-01-24  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/checks.R (runEnqueueSanityChecks): New helper function
-	* R/enqueue.R (enqueueJobs): Call new helper function
-	* man/getDataDirectory.Rd: Added documentation
+        * R/checks.R (runEnqueueSanityChecks): New helper function
+        * R/enqueue.R (enqueueJobs): Call new helper function
+        * man/getDataDirectory.Rd: Added documentation
 
 2018-01-23  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/enqueue.R (enqueueJobs): Quit if no reverse dependencies
+        * R/enqueue.R (enqueueJobs): Quit if no reverse dependencies
 
 2018-01-22  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/enqueue.R (enqueueDepends): New (still experimental) helper
-	function to enqueue (aggregate) dependencies
+        * R/enqueue.R (enqueueDepends): New (still experimental) helper
+        function to enqueue (aggregate) dependencies
 
-	* R/dequeue.R (dequeueDepends):  New (still experimental) helper
-	function to dequeue (aggregate) dependencies
+        * R/dequeue.R (dequeueDepends):  New (still experimental) helper
+        function to dequeue (aggregate) dependencies
 
-	* man/dequeueJobs.Rd: Documentation
-	* man/enqueueJobs.Rd: Ditto
+        * man/dequeueJobs.Rd: Documentation
+        * man/enqueueJobs.Rd: Ditto
 
-	* NAMESPACE: Added two imports from 'utils' plus one from 'tools'
+        * NAMESPACE: Added two imports from 'utils' plus one from 'tools'
 
 2018-01-20  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/dequeue.R (dequeueJobs): Now uses system2() instead
+        * R/dequeue.R (dequeueJobs): Now uses system2() instead
 
-	* R/enqueue.R (enqueueJobs): Consider more repos than just CRAN (#4)
+        * R/enqueue.R (enqueueJobs): Consider more repos than just CRAN (#4)
 
-	* inst/scripts/xvfb-run-safe: No longer use $HOME (#2)
+        * inst/scripts/xvfb-run-safe: No longer use $HOME (#2)
 
 2018-01-19  Dirk Eddelbuettel  <edd@debian.org>
 
-	* DESCRIPTION (Date, Version): New minor version
+        * DESCRIPTION (Date, Version): New minor version
 
-	* R/checks.R (runSanityChecks): Check for xvfb-run and
-	xvfb-run-safe only on Linux, set 'xvfb' value accordingly (#3)
+        * R/checks.R (runSanityChecks): Check for xvfb-run and
+        xvfb-run-safe only on Linux, set 'xvfb' value accordingly (#3)
 
-	* R/dequeue.R (dequeueJobs): Use 'xvfb' value; create working
-	directories as needed
+        * R/dequeue.R (dequeueJobs): Use 'xvfb' value; create working
+        directories as needed
 
-	* DESCRIPTION (SystemRequirements): No need to mention xvfb-run,
-	* DESCRIPTION (OS_type): Removed
+        * DESCRIPTION (SystemRequirements): No need to mention xvfb-run,
+        * DESCRIPTION (OS_type): Removed
 
 2018-01-16  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/dequeue.R (dequeueJobs): No need for wget
-	* DESCRIPTION (SystemRequirements): No need to mention wget, but mention
-	xvfb-run at least while it is being used unconditionally
+        * R/dequeue.R (dequeueJobs): No need for wget
+        * DESCRIPTION (SystemRequirements): No need to mention wget, but mention
+        xvfb-run at least while it is being used unconditionally
 
 2018-01-09  Dirk Eddelbuettel  <edd@debian.org>
 
-	* DESCRIPTION (Date, Version): First CRAN Release 0.0.1
+        * DESCRIPTION (Date, Version): First CRAN Release 0.0.1
 
-	* DESCRIPTION (OS_type): Limit to Unix for now,
-	(SystemRequirements): State need for 'wget' in PATH
+        * DESCRIPTION (OS_type): Limit to Unix for now,
+        (SystemRequirements): State need for 'wget' in PATH
 
-	* R/checks.R (runSanityChecks): Error message for 'xvfb-run-safe'
-	missing now states that the script is included in package
+        * R/checks.R (runSanityChecks): Error message for 'xvfb-run-safe'
+        missing now states that the script is included in package
 
 2018-01-03  Dirk Eddelbuettel  <edd@debian.org>
 
-	* inst/NEWS.Rd: Added
+        * inst/NEWS.Rd: Added
 
-	* R/enqueue.R: Added small example
-	* man/enqueueJobs.Rd: Ditto
+        * R/enqueue.R: Added small example
+        * man/enqueueJobs.Rd: Ditto
 
-	* R/summarise.R (summariseQueue): Also declare "." a global
+        * R/summarise.R (summariseQueue): Also declare "." a global
 
 2018-01-02  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/summarise.R (summariseQueue): List failed and skipped packages
+        * R/summarise.R (summariseQueue): List failed and skipped packages
 
-	* inst/scripts/summariseJobs.r: Renamed for more consistency
+        * inst/scripts/summariseJobs.r: Renamed for more consistency
 
 2018-01-01  Dirk Eddelbuettel  <edd@debian.org>
 
-	* README.md: Added
+        * README.md: Added
 
 2017-12-31  Dirk Eddelbuettel  <edd@debian.org>
 
-	* .travis.yml: Added Travis CI integration
+        * .travis.yml: Added Travis CI integration
 
-	* inst/scripts/summarizeJobs.r: New script
+        * inst/scripts/summarizeJobs.r: New script
 
-	* R/summarise.R (summariseQueue): Small enhancements
+        * R/summarise.R (summariseQueue): Small enhancements
 
 2017-12-30  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/summarise.R (summariseQueue): Extended slightly, rewritten to
-	use only one query and data.table obs thereafter, also summarize
-	queued jobs
+        * R/summarise.R (summariseQueue): Extended slightly, rewritten to
+        use only one query and data.table obs thereafter, also summarize
+        queued jobs
 
 2017-12-29  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/enqueue.R (enqueueJobs): New function, based on script
-	* man/enqueueJobs.Rd: Documentation
-	* inst/scripts/enqueueJobs.r: Use new function
+        * R/enqueue.R (enqueueJobs): New function, based on script
+        * man/enqueueJobs.Rd: Documentation
+        * inst/scripts/enqueueJobs.r: Use new function
 
-	* R/dequeue.R (dequeueJobs): New function, based on script
-	* man/dequeueJobs.Rd: Documentation
-	* inst/scripts/dequeueJobs.r: Use new function
+        * R/dequeue.R (dequeueJobs): New function, based on script
+        * man/dequeueJobs.Rd: Documentation
+        * inst/scripts/dequeueJobs.r: Use new function
 
-	* NAMESPACE: More explicit imports
-	* DESCRIPTIONS: More imports
+        * NAMESPACE: More explicit imports
+        * DESCRIPTIONS: More imports
 
-	* R/utils.R: Expanded documentation for return values
-	* man/getDataDirectory.Rd: Idem
+        * R/utils.R: Expanded documentation for return values
+        * man/getDataDirectory.Rd: Idem
 
-	* R/summarise.R (summariseQueue): New function to summarise
-	results, still incomplete
-	* man/summariseQueue.Rd: Documentation
+        * R/summarise.R (summariseQueue): New function to summarise
+        results, still incomplete
+        * man/summariseQueue.Rd: Documentation
 
 2017-12-28  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/utils.R: Document to the config yaml file
-	* man/getDataDirectory.Rd: Idem
+        * R/utils.R: Document to the config yaml file
+        * man/getDataDirectory.Rd: Idem
 
-	* NAMESPACE: Also import read.csv from utils
+        * NAMESPACE: Also import read.csv from utils
 
 2017-12-27  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/utils.R (getExclusionSet): Correct exclusion set use
-	* inst/scripts/dequeueJobs.r: Idem
+        * R/utils.R (getExclusionSet): Correct exclusion set use
+        * inst/scripts/dequeueJobs.r: Idem
 
-	* local/setup.R: Set two env variables, support local Makevars
+        * local/setup.R: Set two env variables, support local Makevars
 
-	* inst/scripts/watchDB.sh: Simplified
+        * inst/scripts/watchDB.sh: Simplified
 
 2017-12-26  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/db.R: Updated / expanded roxygen documentation
-	* R/utils.R: Idem
-	* man/getDatabaseConnection.Rd: Idem
-	* man/getDataDirectory.Rd: Idem
+        * R/db.R: Updated / expanded roxygen documentation
+        * R/utils.R: Idem
+        * man/getDatabaseConnection.Rd: Idem
+        * man/getDataDirectory.Rd: Idem
 
-	* R/checks.R (runSanityChecks): Renamed from check()
-	* inst/scripts/dequeueJobs.r: Updated call
+        * R/checks.R (runSanityChecks): Renamed from check()
+        * inst/scripts/dequeueJobs.r: Updated call
 
 2017-12-25  Dirk Eddelbuettel  <edd@debian.org>
 
-	* inst/scripts/enqueueJobs.r: New argument '-q queue' for queue
-	directory to be used
+        * inst/scripts/enqueueJobs.r: New argument '-q queue' for queue
+        directory to be used
 
-	* inst/scripts/dequeueJobs.r: Idem
+        * inst/scripts/dequeueJobs.r: Idem
 
-	* R/utils.R (getConfig): Also look at '.pddr.yaml', additional
-	debug argument
+        * R/utils.R (getConfig): Also look at '.pddr.yaml', additional
+        debug argument
 
-	* R/utils.R (getExclusionSet): Support exclusion set
-	* inst/scripts/dequeueJobs.r: Idem
+        * R/utils.R (getExclusionSet): Support exclusion set
+        * inst/scripts/dequeueJobs.r: Idem
 
-	* inst/scripts/enqueueJobs.r: Use CRAN repo
+        * inst/scripts/enqueueJobs.r: Use CRAN repo
 
-	* local/setup.R: Committed as well, set MAKE environment variable
+        * local/setup.R: Committed as well, set MAKE environment variable
 
 2017-12-24  Dirk Eddelbuettel  <edd@debian.org>
 
-	* xvfb-run-safe: Added to inst/scripts
+        * xvfb-run-safe: Added to inst/scripts
 
-	* R/utils.R (getConfig): Added @rdname
+        * R/utils.R (getConfig): Added @rdname
 
-	* R/checks.R (check): Simple sanity checker
+        * R/checks.R (check): Simple sanity checker
 
-	* R/db.R (getConnection, createTable, insertRow): Database helper
-	functions
-	* man/getConnection.Rd: Minimal documentation
+        * R/db.R (getConnection, createTable, insertRow): Database helper
+        functions
+        * man/getConnection.Rd: Minimal documentation
 
-	* inst/scripts/watchDB.sh: Minimal db watcher
+        * inst/scripts/watchDB.sh: Minimal db watcher
 
 2017-12-23  Dirk Eddelbuettel  <edd@debian.org>
 
-	* DESCRIPTION: First committed version
-	* inst/scripts/dequeueJobs.R: Idem
-	* inst/scripts/enqueueJobs.R: Idem
-	* local/setup.R: Idem
-	* man/getDataDirectory.Rd: Idem
-	* NAMESPACE: Idem
-	* prrd-package: Idem
-	* R/utils.R: Idem
+        * DESCRIPTION: First committed version
+        * inst/scripts/dequeueJobs.R: Idem
+        * inst/scripts/enqueueJobs.R: Idem
+        * local/setup.R: Idem
+        * man/getDataDirectory.Rd: Idem
+        * NAMESPACE: Idem
+        * prrd-package: Idem
+        * R/utils.R: Idem

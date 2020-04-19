@@ -15,7 +15,7 @@
     \item Meta-data on package, version and date is now stored, and
     shown on dequeue startup (Dirk)
     \item The README.md was clarified and improved (Dirk, Avraham Adler
-    in \ghpr{8}, Robert Nuske in \ghpr{10}})
+    in \ghpr{8}, Robert Nuske in \ghpr{10})
   }
 }
 

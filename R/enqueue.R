@@ -9,9 +9,11 @@
 ##' @return A queue is create as a side effect, its elements are returned invisibly
 ##' @author Dirk Eddelbuettel
 ##' @examples
+##' \dontrun{
 ##' td <- tempdir()
 ##' options(repos=c(CRAN="https://cloud.r-project.org"))
 ##' jobsdf <- enqueueJobs(package="digest", directory=td)
+##' }
 enqueueJobs <- function(package, directory) {
 
     if (!is.null(cfg <- getConfig())) {
@@ -47,7 +49,9 @@ enqueueJobs <- function(package, directory) {
 
     con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
     createRunDataTable(con)
-    dat <- data.frame(package=package, version=format(packageVersion(package)), date=format(Sys.Date()))
+    dat <- data.frame(package=package,
+                      version=format(packageVersion(package)),
+                      date=format(Sys.Date()))
     dbWriteTable(con, "metadata", dat, append=TRUE)
     dbDisconnect(con)
     
