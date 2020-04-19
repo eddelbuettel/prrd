@@ -3,7 +3,7 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/prrd/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/prrd/issues/#1}{##1}}
 
-\section{Changes in prrd version 0.0.3 (2020-04-18)}{
+\section{Changes in prrd version 0.0.3 (2020-04-19)}{
   \itemize{
     \item Extended functionality \code{summarise()} with optional use
     of package \code{foghorn} (Dirk)
@@ -12,7 +12,8 @@
     \item Added tweaks and enhancements throughout (Dirk)
     \item The default queue location can now be set via \code{options}
     (Dirk)
-    \item Meta-data on package, version and date is now stored. (Dirk)
+    \item Meta-data on package, version and date is now stored, and
+    shown on dequeue startup (Dirk)
     \item The README.md was clarified and improved (Dirk, Avraham Adler
     in \ghpr{8}, Robert Nuske in \ghpr{10}})
   }

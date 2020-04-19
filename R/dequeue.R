@@ -21,6 +21,7 @@ dequeueJobs <- function(package, directory, exclude=NULL) {
 
     con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
     createTable(con)
+    meta <- dbGetQuery(con, "select * from metadata")
 
     pid <- Sys.getpid()
     hostname <- Sys.info()[["nodename"]]
@@ -52,6 +53,8 @@ dequeueJobs <- function(package, directory, exclude=NULL) {
     exclset <- if (!is.null(exclude)) getExclusionSet(exclude) else character()
     if (verbose) print(exclset)
 
+    cat("## Reverse depends check of", blue(meta[1,"package"]), blue(meta[1,"version"]), "\n")
+    
     ## work down messages, if any
     while (!is.null(msg <- try_consume(q))) {
         starttime <- Sys.time()
