@@ -33,7 +33,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
        return(invisible(res))
     }
 
-    cat("Test of", meta[1,"package"], "version", meta[1,"version"], "had",
+    cat("Test of", meta[1,"package"], meta[1,"version"], "had",
         res[result==0,.N], "successes,",
         res[result==1,.N], "failures, and",
         res[result==2,.N], "skipped packages.",
