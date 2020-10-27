@@ -1,3 +1,9 @@
+2020-10-26  Dirk Eddelbuettel  <edd@debian.org>
+
+        * DESCRIPTION (Date, Version): Roll minor version
+
+	* .travis.yml: Switch to focal and BSPM
+
 2020-10-27  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/summarise.R (summariseQueue): Even more compact results display
