@@ -1,3 +1,7 @@
+2020-10-27  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/summarise.R (summariseQueue): Even more compact results display
+
 2020-04-23  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/scripts/summariseJobs.r: Queuefile is now an optional argument
