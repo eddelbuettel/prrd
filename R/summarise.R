@@ -73,7 +73,9 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
 .installfile <- function(wd, pkg) file.path(wd, paste0(pkg, ".Rcheck"), "00install.out")
 
 .grepMissing <- function(wd, pkg) {
-    lines <- readLines(.checkfile(wd, pkg))
+    file <- .checkfile(wd, pkg)
+    if (!file.exists(file)) return("")
+    lines <- readLines(file)
     ind <- grep("there is no package called", lines)
     if (length(ind) == 0) return("")
     if (length(ind) >= 2) ind <- ind[1]
@@ -82,7 +84,9 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
 }
 
 .grepRequired <- function(wd, pkg) {
-    lines <- readLines(.checkfile(wd, pkg))
+    file <- .checkfile(wd, pkg)
+    if (!file.exists(file)) return("")
+    lines <- readLines(file)
     if (any(lines == "Packages required but not available:")) {
         ind <- which("Packages required but not available:" == lines)
         return(lines[ind+1])
@@ -95,7 +99,9 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
 }
 
 .grepNeeded <- function(wd, pkg) {
-    lines <- readLines(.checkfile(wd, pkg))
+    file <- .checkfile(wd, pkg)
+    if (!file.exists(file)) return("")
+    lines <- readLines(file)
     ind <- grep("package.* need.*", lines)
     if (length(ind) == 0) return("")
     if (length(ind) >= 2) ind <- ind[1]
@@ -103,7 +109,9 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
 }
 
 .grepInstallationFailed <- function(wd, pkg) {
-    lines <- readLines(.checkfile(wd, pkg))
+    file <- .checkfile(wd, pkg)
+    if (!file.exists(file)) return(FALSE)
+    lines <- readLines(file)
     ind <- any(grepl("Installation failed", lines))
 }
 
@@ -132,7 +140,8 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
     failed <- res[result==1, .(package=unique(sort(package)))]
 
     failed[ , `:=`(hasCheckLog=file.exists(.checkfile(wd, package)),
-                   hasInstallLog=file.exists(.installfile(wd, package))), by=package]
+                   hasInstallLog=file.exists(.installfile(wd, package))),
+           by=package]
 
     failed[hasCheckLog==TRUE & hasInstallLog==TRUE, missingPkg:=.grepMissing(wd, package), by=package]
 
