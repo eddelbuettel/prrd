@@ -5,3 +5,4 @@
 ^queues
 ^.*\.tar\.gz$
 ^\.travis\.yml
+^\.github
