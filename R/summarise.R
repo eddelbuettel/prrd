@@ -152,9 +152,8 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
     failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", badInstall:=.grepInstallationFailed(wd, package), by=package]
 
     if (foghorn && requireNamespace("foghorn", quietly=TRUE)) {
-        failed[badInstall==FALSE,
-	       c("error", "fail", "warn", "note", "ok", "hasOtherIssue") :=
-	         data.frame( foghorn::cran_results(pkg=package)[1,-1], src="crandb" ),
+        failed[, c("error", "fail", "warn", "note", "ok", "hasOtherIssue") :=
+                     data.frame(foghorn::cran_results(pkg=package)[1,-1], src="crandb"),
 	       by=package]
     }
 
