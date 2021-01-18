@@ -158,7 +158,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
     }
 
     cat("\nError summary:\n")
-    print(failed[, -c(2:3)])
+    print(failed[, -c(2:3)], nrows=nrow(failed))
     invisible(failed)
 }
 

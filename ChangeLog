@@ -1,3 +1,11 @@
+2021-01-18  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/summarise.R (.runExtended): Ensure full results printed
+
+2021-01-17  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/summarise.R (.runExtended): Run foghorn on all packages
+
 2020-12-29  Dirk Eddelbuettel  <edd@debian.org>
 
         * .github/workflows/ci.yaml: Add CI runner using r-ci
