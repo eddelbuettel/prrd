@@ -4,7 +4,7 @@
 [![CI](https://github.com/eddelbuettel/prrd/workflows/ci/badge.svg)](https://github.com/eddelbuettel/prrd/actions?query=workflow%3Aci)
 [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
 [![CRAN](http://www.r-pkg.org/badges/version/prrd)](https://cran.r-project.org/package=prrd)
-[![Downloads](http://cranlogs.r-pkg.org/badges/prrd?color=brightgreen)](http://www.r-pkg.org/pkg/prrd)
+[![Downloads](http://cranlogs.r-pkg.org/badges/prrd?color=brightgreen)](https://www.r-pkg.org:443/pkg/prrd)
 [![Last Commit](https://img.shields.io/github/last-commit/eddelbuettel/prrd)](https://github.com/eddelbuettel/prrd)
 
 ### Motivation
@@ -68,7 +68,7 @@ almost four-fold) using six workers. An earlier run of
 [RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html) decreased from 5.87 hours to
 1.92 hours (or just over three-fold) using four workers, and to 1.29 hours (or by 4.5) using six
 workers (and a fresh `ccache`, see
-[here](http://dirk.eddelbuettel.com/blog/2017/11/27#011_faster_package_installation_one) for its
+[here](https://dirk.eddelbuettel.com/blog/2017/11/27/) for its
 impact).  In all cases the machine which was used was generally not idle.
 
 The following screenshot shows a run for
@@ -78,7 +78,7 @@ the successes in green, skipped jobs in blue (from packages which sometimes woul
 ![](https://github.com/eddelbuettel/prrd/raw/master/local/screenshot_prrd_rcpparmadillo.png)
 
 The split screen and additional tables are thanks to the wonderful
-[byobu](http://byobu.co) wrapper around [tmux](https://github.com/tmux/tmux).
+[byobu](https://byobu.org) wrapper around [tmux](https://github.com/tmux/tmux).
 
 ### Configuration
 

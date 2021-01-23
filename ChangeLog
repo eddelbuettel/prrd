@@ -1,15 +1,23 @@
+2021-01-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Updated several URLs to https
+
 2021-01-18  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/summarise.R (.runExtended): Ensure full results printed
 
 2021-01-17  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/summarise.R (.runExtended): Run foghorn on all packages
+	* R/summarise.R (.runExtended): Use foghorn for all installation states
 
 2020-12-29  Dirk Eddelbuettel  <edd@debian.org>
 
         * .github/workflows/ci.yaml: Add CI runner using r-ci
 	* README.md: Add new CI badge
+
+2020-11-15  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/summarise.R (multiple): Make summaries a little more robust
 
 2020-10-26  Dirk Eddelbuettel  <edd@debian.org>
 

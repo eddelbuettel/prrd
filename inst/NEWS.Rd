@@ -3,7 +3,15 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/prrd/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/prrd/issues/#1}{##1}}
 
-\section{Changes in prrd version 0.0.3 (2020-04-19)}{
+\section{Changes in prrd version 0.0.4 (2021-01-23)}{
+  \itemize{
+    \item Report summary mode is now compact, more robust and reports
+    extended CRAN summaries. (Dirk via several changes)
+    \item Continuous Integration now uses \code{run.sh} from \pkg{r-ci}
+  }
+}
+
+ \section{Changes in prrd version 0.0.3 (2020-04-19)}{
   \itemize{
     \item Extended functionality \code{summarise()} with optional use
     of package \code{foghorn} (Dirk)
