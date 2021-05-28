@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# cf http://stackoverflow.com/a/30336424/143305
+# cf https://stackoverflow.com/a/30336424/143305
 # plus one change as noted below
 
 # allow settings to be updated via environment

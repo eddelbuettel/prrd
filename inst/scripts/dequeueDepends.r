@@ -15,7 +15,7 @@ if (opt$usage) {
   dequeueDepends.r
 
 dequeueDepends.r is part of prrd.r which is becoming a parallel rev dep runner.
-See http://dirk.eddelbuettel.com/code/prrd.html more information.\n")
+See https://dirk.eddelbuettel.com/code/prrd.html more information.\n")
     q("no")
 }
 
