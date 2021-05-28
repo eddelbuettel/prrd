@@ -8,15 +8,17 @@
 ##' @param package A character variable denoting a package
 ##' @param directory A character variable denoting a directory for the queuefile
 ##' @param exclude An optional character variable denoting an exclusion set csv file.
+##' @param date Optional character variable describing a date (as part of the queue
+##' file, default is current date.
 ##' @return A queue is create as a side effect, its elements are returned invisibly
 ##' @author Dirk Eddelbuettel
-dequeueJobs <- function(package, directory, exclude=NULL) {
+dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date())) {
 
     runSanityChecks()                       # (currently) checks (only) for xvfb-run-safe
 
     ## setting repos now in local/setup.R
 
-    db <- getQueueFile(package=package, path=directory)
+    db <- getQueueFile(package=package, path=directory, date=date)
     q <- ensure_queue("jobs", db = db)
 
     con <- getDatabaseConnection(db)        # we re-use the liteq db for our results

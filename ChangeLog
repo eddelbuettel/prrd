@@ -1,3 +1,9 @@
+2021-05-28  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/dequeue.R (dequeueJobs): Support new argument 'date'
+	* man/dequeueJobs.Rd: Document new argument 'date'
+	* inst/scripts/dequeueJobs.r: Support new argument --date
+
 2021-04-06  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (URL, BugRreports): Added to DESCRIPTION file
