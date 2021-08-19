@@ -55,7 +55,6 @@ enqueueJobs <- function(package, directory, dbfile="") {
         pkgset <- data.table(Package=setdiff(pkgset, res$package))
     }
     work <- AP[pkgset, on="Package"][,1:2]
-    print(work); q()
 
     db <- getQueueFile(package=package, path=directory)
     q <- ensure_queue("jobs", db = db)
