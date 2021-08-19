@@ -1,3 +1,9 @@
+2021-08-18  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/enqueue.R (enqueueJobs): If given a database file with prior
+	results, only enqueue new packages in a 'delta' mode
+	* inst/scripts/enqueueJobs.r: Support new delta argument
+
 2021-05-28  Dirk Eddelbuettel  <edd@debian.org>
 
         * DESCRIPTION (Date, Version): Roll minor version
