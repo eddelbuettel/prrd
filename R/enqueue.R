@@ -14,7 +14,7 @@
 ##' options(repos=c(CRAN="https://cloud.r-project.org"))
 ##' jobsdf <- enqueueJobs(package="digest", directory=td)
 ##' }
-enqueueJobs <- function(package, directory) {
+enqueueJobs <- function(package, directory, dbfile="") {
 
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
@@ -29,17 +29,33 @@ enqueueJobs <- function(package, directory) {
 
     runEnqueueSanityChecks()              # currenly repos only
 
+    if (dbfile != "") {
+        if (file.exists(dbfile)) {
+            db <- dbfile
+        } else {
+            stop("No file ", dbfile, " found\n", call.=FALSE)
+        }
+        con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
+        res <- setDT(dbGetQuery(con, "select * from results"))
+        dbDisconnect(con)
+    }
+
     ## available package at CRAN and/or elsewhere
     ## use cfg$setup to override/extend with additional (local) repos
     AP <- available.packages(filters=list())
 
     pkgset <- dependsOnPkgs(package, recursive=FALSE, installed=AP)
-    if (length(pkgset) == 0) stop("No dependencies for ", package, call.=FALSE)
+    if (length(pkgset) == 0) stop("No dependencies for ", package, call. = FALSE)
 
     AP <- setDT(as.data.frame(AP))
-    pkgset <- data.table(Package=pkgset)
 
+    if (dbfile == "") {
+        pkgset <- data.table(Package=pkgset)
+    } else {
+        pkgset <- data.table(Package=setdiff(pkgset, res$package))
+    }
     work <- AP[pkgset, on="Package"][,1:2]
+    print(work); q()
 
     db <- getQueueFile(package=package, path=directory)
     q <- ensure_queue("jobs", db = db)
