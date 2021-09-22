@@ -12,5 +12,5 @@ Imports: config, liteq, data.table, crayon, DBI, RSQLite
 Suggests: docopt, foghorn
 URL: https://github.com/eddelbuettel/prrd, https://dirk.eddelbuettel.com/code/prrd.html
 BugReports: https://github.com/eddelbuettel/prrd/issues
-RoxygenNote: 6.1.0
+RoxygenNote: 6.0.1
 Encoding: UTF-8

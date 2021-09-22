@@ -5,7 +5,7 @@
 \alias{enqueueDepends}
 \title{Enqueues reverse-dependent packages}
 \usage{
-enqueueJobs(package, directory)
+enqueueJobs(package, directory, dbfile = "", addfailed = FALSE)
 
 enqueueDepends(package, directory)
 }
@@ -13,6 +13,10 @@ enqueueDepends(package, directory)
 \item{package}{A character variable denoting a package}
 
 \item{directory}{A character variable denoting a directory}
+
+\item{dbfile}{Optional character with path to previous runs db file}
+
+\item{addfailed}{Optional logical swith to add previous failures}
 }
 \value{
 A queue is create as a side effect, its elements are returned invisibly

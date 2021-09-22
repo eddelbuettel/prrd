@@ -1,3 +1,10 @@
+2021-09-21  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/enqueue.R (enqueueJobs): Support new option to add failed jobs
+	from previous run if database file given
+	* man/enqueueJobs.Rd: Document new option
+	* inst/scripts/enqueueJobs.r: Support new option argument
+
 2021-08-18  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/enqueue.R (enqueueJobs): If given a database file with prior

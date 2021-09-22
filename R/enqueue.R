@@ -6,6 +6,8 @@
 ##' @title Enqueues reverse-dependent packages
 ##' @param package A character variable denoting a package
 ##' @param directory A character variable denoting a directory
+##' @param dbfile Optional character with path to previous runs db file
+##' @param addfailed Optional logical swith to add previous failures
 ##' @return A queue is create as a side effect, its elements are returned invisibly
 ##' @author Dirk Eddelbuettel
 ##' @examples
@@ -14,7 +16,7 @@
 ##' options(repos=c(CRAN="https://cloud.r-project.org"))
 ##' jobsdf <- enqueueJobs(package="digest", directory=td)
 ##' }
-enqueueJobs <- function(package, directory, dbfile="") {
+enqueueJobs <- function(package, directory, dbfile="", addfailed=FALSE) {
 
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
@@ -33,7 +35,7 @@ enqueueJobs <- function(package, directory, dbfile="") {
         if (file.exists(dbfile)) {
             db <- dbfile
         } else {
-            stop("No file ", dbfile, " found\n", call.=FALSE)
+            stop("No file ", dbfile, " found\n", call. = FALSE)
         }
         con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
         res <- setDT(dbGetQuery(con, "select * from results"))
@@ -52,10 +54,15 @@ enqueueJobs <- function(package, directory, dbfile="") {
     if (dbfile == "") {
         pkgset <- data.table(Package=pkgset)
     } else {
-        pkgset <- data.table(Package=setdiff(pkgset, res$package))
+        newpkgs <- setdiff(pkgset, res$package)
+        if (addfailed) {
+            failed <- res[ result == 1, .(package)]
+            pkgset <- data.table(Package=unique(sort(c(failed$package, newpkgs))))
+        } else {
+            pkgset <- data.table(Package=newpkgs)
+        }
     }
     work <- AP[pkgset, on="Package"][,1:2]
-
     db <- getQueueFile(package=package, path=directory)
     q <- ensure_queue("jobs", db = db)
 
