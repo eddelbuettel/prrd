@@ -9,7 +9,7 @@
 ##' @return A connection object
 ##' @author Dirk Eddelbuettel
 getDatabaseConnection <- function(file) {
-    con <- dbConnect(SQLite(), file)
+    con <- dbConnect(SQLite(), file, synchronous=NULL)
     dbExecute(con, "PRAGMA busy_timeout = 1000")
     con
 }

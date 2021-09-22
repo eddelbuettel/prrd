@@ -5,6 +5,8 @@
 	* man/enqueueJobs.Rd: Document new option
 	* inst/scripts/enqueueJobs.r: Support new option argument
 
+	* R/db.R (getDatabaseConnection): Set synchronous=NULL
+
 2021-08-18  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/enqueue.R (enqueueJobs): If given a database file with prior
