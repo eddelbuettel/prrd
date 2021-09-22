@@ -3,6 +3,18 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/prrd/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/prrd/issues/#1}{##1}}
 
+\section{Changes in prrd version 0.0.5 (2021-09-22)}{
+  \itemize{
+    \item Some remaing http URLs were changed to https.
+    \item The \code{dequeueJobs} script has a new argument date to help
+    specify a queue file.
+    \item The \code{enqueueJobs} can now compute just a \sQuote{delta}
+    of (new) packages relative to a given prior queuefile and run.
+    \item When running in \sQuote{delta} mode, previously failed
+    packages can also be selected.
+  }
+}
+
 \section{Changes in prrd version 0.0.4 (2021-01-23)}{
   \itemize{
     \item Report summary mode is now compact, more robust and reports
