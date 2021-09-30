@@ -61,7 +61,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
         cat("None still scheduled\n")
     }
 
-    if (extended && (res[result==0,.N] > 0)) {
+    if (extended && (res[result==1,.N] > 0)) {
         ext <- .runExtended(res, foghorn)
         invisible(return(list(res=res, ext=ext)))
     }

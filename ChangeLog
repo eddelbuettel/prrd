@@ -1,3 +1,8 @@
+2021-09-30  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/summarise.R (summariseQueue): Only run extended summary when
+	we have failures (correcting test to count failures not success)
+
 2021-09-22  Dirk Eddelbuettel  <edd@debian.org>
 
         * DESCRIPTION (Version, Date): Release 0.0.5
