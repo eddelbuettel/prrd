@@ -1,5 +1,7 @@
 2021-10-03  Dirk Eddelbuettel  <edd@debian.org>
 
+        * DESCRIPTION (Date, Version): Roll minor version
+
 	* inst/scripts/dequeueJobs.r: Add missing docopt argument entry
 	for date argument
 
