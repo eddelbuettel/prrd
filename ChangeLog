@@ -1,3 +1,8 @@
+2021-10-03  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/scripts/dequeueJobs.r: Add missing docopt argument entry
+	for date argument
+
 2021-09-30  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/summarise.R (summariseQueue): Only run extended summary when
