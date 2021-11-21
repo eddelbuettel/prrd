@@ -1,6 +1,5 @@
 ## prrd: Parallel Running [of] Reverse Depends
  
-[![Build Status](https://travis-ci.org/eddelbuettel/prrd.svg)](https://travis-ci.org/eddelbuettel/prrd)
 [![CI](https://github.com/eddelbuettel/prrd/workflows/ci/badge.svg)](https://github.com/eddelbuettel/prrd/actions?query=workflow%3Aci)
 [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
 [![CRAN](http://www.r-pkg.org/badges/version/prrd)](https://cran.r-project.org/package=prrd)
