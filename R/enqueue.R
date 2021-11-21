@@ -56,7 +56,7 @@ enqueueJobs <- function(package, directory, dbfile="", addfailed=FALSE) {
     } else {
         newpkgs <- setdiff(pkgset, res$package)
         if (addfailed) {
-            failed <- res[ result == 1, .(package)]
+            failed <- res[ result != 0, .(package)]
             pkgset <- data.table(Package=unique(sort(c(failed$package, newpkgs))))
         } else {
             pkgset <- data.table(Package=newpkgs)

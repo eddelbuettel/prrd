@@ -1,3 +1,7 @@
+2021-10-12  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/enqueue.R (enqueueJobs): 'addfailed' now includes skipped
+
 2021-10-03  Dirk Eddelbuettel  <edd@debian.org>
 
         * DESCRIPTION (Date, Version): Roll minor version
