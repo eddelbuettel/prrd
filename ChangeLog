@@ -1,5 +1,7 @@
 2022-01-07  Dirk Eddelbuettel  <edd@debian.org>
 
+        * DESCRIPTION (Date, Version): Roll minor version
+
 	* R/enqueue.R (enqueueJobs): When adding 'failed' packages from prior
 	run, ensure selected packages are currently available
 
