@@ -21,10 +21,11 @@ enqueueJobs <- function(package, directory, dbfile="", addfailed=FALSE) {
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
         if ("libdir" %in% names(cfg)) {
-            .libPaths(cfg$libdir)
-            Sys.setenv("R_LIBS_USER"=cfg$libdir)
-            if (!dir.exists(cfg$libdir)) {
-                dir.create(cfg$libdir)
+            fullLibDir <- normalizePath(cfg$libdir)
+            .libPaths(fullLibDir)
+            Sys.setenv("R_LIBS_USER"=fullLibDir)
+            if (!dir.exists(fullLibDir)) {
+                dir.create(fullLibDir)
             }
         }
     }
@@ -93,10 +94,11 @@ enqueueDepends <- function(package, directory) {
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
         if ("libdir" %in% names(cfg)) {
-            .libPaths(cfg$libdir)
-            Sys.setenv("R_LIBS_USER"=cfg$libdir)
-            if (!dir.exists(cfg$libdir)) {
-                dir.create(cfg$libdir)
+            fullLibDir <- normalizePath(cfg$libdir)
+            .libPaths(fullLibDir)
+            Sys.setenv("R_LIBS_USER"=fullLibDir)
+            if (!dir.exists(fullLibDir)) {
+                dir.create(fullLibDir)
             }
         }
     }
