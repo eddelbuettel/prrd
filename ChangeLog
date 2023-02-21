@@ -1,3 +1,13 @@
+2023-02-21  Joshua Ulrich  <josh.m.ulrich@gmail.com>
+
+	* R/dequeue.R (dequeueJobs, dequeueDepends): Add relative path support
+	for 'libdir' and 'workdir' arguments
+	* R/enqueue.R (enqueueJobs, enqueueDepends): Idem
+	* R/summarise.R (summariseQueue): Idem
+	* R/utils.R: Update docs to include relative path support for
+	'libdir' and 'workdir' arguments
+	* man/getDataDirectory.Rd: Idem
+
 2022-11-08  Dirk Eddelbuettel  <edd@debian.org>
 
 	* .github/workflows/ci.yaml (jobs): Update to actions/checkout@v3

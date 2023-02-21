@@ -12,9 +12,10 @@
 ##' Currently supported are
 ##' \describe{
 ##'   \item{setup}{The path to an R file that will be \code{source}'ed.}
-##'   \item{workdir}{The directory used for the parallel run of reverse depends.}
-##'   \item{libdir}{The directory passed to \code{.libPaths} allow for additonal
-##' build-dependencies.}
+##'   \item{workdir}{The directory used for the parallel run of reverse depends.
+##' May be an absolute or relative path.}
+##'   \item{libdir}{The directory passed to \code{.libPaths} allow for additional
+##' build-dependencies. May be an absolute or relative path. }
 ##'   \item{debug}{A boolean switch to enable more debugging output.}
 ##'   \item{verbose}{A boolean switch to enable more verbose output.}
 ##' }
