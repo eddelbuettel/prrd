@@ -1,3 +1,8 @@
+2023-04-10  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/scripts/dequeueJobs.r: Correct date argument help text, use anydate
+	* DESCRIPTION: Suggest anytime package
+
 2023-02-21  Joshua Ulrich  <josh.m.ulrich@gmail.com>
 
 	* R/dequeue.R (dequeueJobs, dequeueDepends): Add relative path support
