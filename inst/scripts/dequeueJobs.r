@@ -21,4 +21,4 @@ See https://dirk.eddelbuettel.com/code/prrd.html for more information.\n")
     q("no")
 }
 
-prrd::dequeueJobs(opt$PACKAGE, opt$queue, opt$exclude, format(anytime::anydate(opt$date))
+prrd::dequeueJobs(opt$PACKAGE, opt$queue, opt$exclude, format(anytime::anydate(opt$date)))
