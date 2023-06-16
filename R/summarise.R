@@ -46,7 +46,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
     cat("Average of", round(dts/nrow(res), digits=3), "secs relative to",
         format(round(res[, mean(runtime)], digits=3)), "secs using",
         nrow(res[, .N, by=runner]), "runners\n")
-    totsecs <- (nrow(jobs) - nrow(res)) * dts/nrow(res) # via (total_jobs - done_jobs) * avg_time
+    totsecs <- (jobs[, max(id)] - nrow(res)) * dts/nrow(res) # via (total_jobs - done_jobs) * avg_time
     tothrs <- totsecs / 3600
     cat("Anticipated completion in", if (tothrs > 24) paste(round(tothrs/24,2), "days")
                                      else (paste(round(tothrs,2), "hours")), "on",
