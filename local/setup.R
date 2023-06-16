@@ -3,7 +3,7 @@ options("width"=200,
         "digits.secs"=2)
 
 r <- character()
-r["CRAN"] <- "https://cloud.r-project.org"
+r["CRAN"] <- "https://cran.r-project.org"
 options(repos = r)
 
 if (exists("opt") &&
