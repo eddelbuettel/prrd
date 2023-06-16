@@ -1,3 +1,7 @@
+2023-06-16  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/summarise.R (summariseQueue): Also display anticipated completion time
+
 2023-04-10  Dirk Eddelbuettel  <edd@debian.org>
 
         * DESCRIPTION (Date, Version): Roll micro version and date
