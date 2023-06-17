@@ -46,11 +46,13 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
     cat("Average of", round(dts/nrow(res), digits=3), "secs relative to",
         format(round(res[, mean(runtime)], digits=3)), "secs using",
         nrow(res[, .N, by=runner]), "runners\n")
-    totsecs <- (jobs[, max(id)] - nrow(res)) * dts/nrow(res) # via (total_jobs - done_jobs) * avg_time
-    tothrs <- totsecs / 3600
-    cat("Anticipated completion in", if (tothrs > 24) paste(round(tothrs/24,2), "days")
-                                     else (paste(round(tothrs,2), "hours")), "on",
-        format(totsecs + Sys.time(), "%d %b at %H:%M"), "\n")
+    if (nrow(jobs) > 0) {
+        totsecs <- (jobs[, max(id)] - nrow(res)) * dts/nrow(res) # via (total_jobs - done_jobs) * avg_time
+        tothrs <- totsecs / 3600
+        cat("Anticipated completion in", if (tothrs > 24) paste(round(tothrs/24,2), "days")
+                                         else (paste(round(tothrs,2), "hours")), "on",
+            format(totsecs + Sys.time(), "%d %b at %H:%M"), "\n")
+    }    
     cat("\nFailed packages: ", paste(unique(sort(res[result==1, .(package)][[1]])), collapse=", "), "\n")
     cat("\nSkipped packages: ", paste(res[result==2, .(package)][[1]], collapse=", "), "\n")
     cat("\n")
