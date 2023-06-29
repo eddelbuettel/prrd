@@ -1,3 +1,7 @@
+2023-06-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Add r-universe badge
+
 2023-06-16  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/summarise.R (summariseQueue): Also display anticipated completion time

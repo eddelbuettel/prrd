@@ -3,6 +3,7 @@
 [![CI](https://github.com/eddelbuettel/prrd/workflows/ci/badge.svg)](https://github.com/eddelbuettel/prrd/actions?query=workflow%3Aci)
 [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
 [![CRAN](http://www.r-pkg.org/badges/version/prrd)](https://cran.r-project.org/package=prrd)
+[![r-universe](https://eddelbuettel.r-universe.dev/badges/prrd)](https://eddelbuettel.r-universe.dev/prrd)
 [![Downloads](http://cranlogs.r-pkg.org/badges/prrd?color=brightgreen)](https://www.r-pkg.org:443/pkg/prrd)
 [![Last Commit](https://img.shields.io/github/last-commit/eddelbuettel/prrd)](https://github.com/eddelbuettel/prrd)
 
