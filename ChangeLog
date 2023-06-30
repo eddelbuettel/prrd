@@ -1,3 +1,7 @@
+2023-06-30  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/summarise.R (.runExtended): Correct foghorn call
+
 2023-06-29  Dirk Eddelbuettel  <edd@debian.org>
 
 	* README.md: Add r-universe badge

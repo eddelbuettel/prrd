@@ -161,7 +161,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
 
     if (foghorn && requireNamespace("foghorn", quietly=TRUE)) {
         failed[, c("error", "fail", "warn", "note", "ok", "hasOtherIssue") :=
-                     data.frame(foghorn::cran_results(pkg=package)[1,-1], src="crandb"),
+                     data.frame(foghorn::cran_results(pkg=package, src="crandb")[1,-1]),
 	       by=package]
     }
 
