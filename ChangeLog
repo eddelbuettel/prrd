@@ -1,3 +1,8 @@
+2023-12-23    <dirk@cloud-devel.wu.ac.at>
+
+	* R/summarise.R (.runExtended): Ensure no-longer-on-CRAN packages
+	are filtered out before calling `foghorn` on it
+
 2023-06-30  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/summarise.R (.runExtended): Correct foghorn call
