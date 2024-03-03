@@ -164,9 +164,10 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
         data.table::setnames(cran, c("Package", "Version"), c("package", "version"))
         cran <- cran[,.(package,version)]
         failed <- cran[failed, on="package"][is.na(version)==FALSE]
-        failed[, c("error", "fail", "warn", "note", "ok", "hasOtherIssue") :=
-                     data.frame(foghorn::cran_results(pkg=package, src="crandb")[1,-1]),
-	       by=package]
+        pkgs <- failed[, package]
+        fi <- data.table(foghorn::cran_results(pkg=pkgs, src="crandb"), key="package")
+        failed <- fi[failed, on="package"]
+        data.table::setnames(failed, "has_other_issues", "hasOtherIssues")
     }
 
     cat("\nError summary:\n")

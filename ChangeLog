@@ -1,3 +1,7 @@
+2024-03-03  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/summarise.R (.runExtended): Refactor 'foghorn' use to one call
+
 2024-02-19  Dirk Eddelbuettel  <edd@debian.org>
 
 	* .github/workflows/ci.yaml (jobs): Update to actions/checkout@v4,
