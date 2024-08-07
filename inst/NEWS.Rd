@@ -3,6 +3,26 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/prrd/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/prrd/issues/#1}{##1}}
 
+\section{Changes in prrd version 0.0.6 (2024-03-06)}{
+  \itemize{
+    \item The summary function has received several enhancements:
+    \itemize{
+      \item Extended summary is only running when failures are seen.
+      \item The \code{summariseQueue} function now displays an anticipated
+      completion time and remaining duration.
+      \item The use of optional package \pkg{foghorn} has been refined, and
+      refactored, when running summaries.
+    }
+    \item The \code{dequeueJobs.r} scripts can receive a date argument, the
+    date can be parse via \code{anydate} if \pkg{anytime} ins present.
+    \item The \code{enqueeJobs.r} now considers skipped package when running
+    'addfailed' while ensuring selecting packages are still on CRAN.
+    \item The CI setup has been updated (twice),
+    \item Enqueing and dequing functions and scripts now support relative
+    directories, updated documentation (\ghpr{18} by Joshua Ulrich).
+  }
+}
+
 \section{Changes in prrd version 0.0.5 (2021-09-22)}{
   \itemize{
     \item Some remaing http URLs were changed to https.
