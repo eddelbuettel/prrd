@@ -2,6 +2,10 @@
 
 	* .github/workflows/ci.yaml (jobs): Use r-ci action with bootstrap
 
+2024-10-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/db.R (getDatabaseConnection): Use sqliteSetBusyHandler
+
 2024-09-03  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Authors@R): Added
