@@ -126,7 +126,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
     file <- .installfile(wd, pkg)
     if (!file.exists(file)) return(FALSE)
     lines <- readLines(file)
-    ind <- any(grepl("^RcppExports.cpp.*expansion of macro ‘Rf_error’", lines))
+    ind <- any(grepl("^RcppExports.cpp.*expansion of macro .Rf_error.", lines))
 }
 
 .grepRfError <- function(wd, pkg) {
