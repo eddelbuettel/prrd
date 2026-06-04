@@ -196,4 +196,5 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
 globalVariables(c(".", ".N", "result", "starttime", "endtime",
                   "times", "runtime", "runner", "status",
                   ":=", "badInstall", "hasCheckLog", "hasInstallLog",
+                  "oldRcppExports", "callsRfError",
                   "missingPkg", "package", "id"))
