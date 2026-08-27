@@ -3,6 +3,14 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/prrd/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/prrd/issues/#1}{##1}}
 
+\section{Changes in prrd version 0.0.7 (2026-08-27)}{
+  \itemize{
+    \item Updates to DESCRIPTION have been made as CRAN requirements change
+    \item The continuous integration setup was updated several times
+    \item The database connection now uses sqliteSetBusyHandler
+  } 
+}
+
 \section{Changes in prrd version 0.0.6 (2024-03-06)}{
   \itemize{
     \item The summary function has received several enhancements:
