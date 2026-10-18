@@ -29,4 +29,5 @@ if (is.null(opt$QUEUEFILE)) {
     opt$QUEUEFILE <- qf
 }
 
+suppressMessages(library(prrd))
 prrd::summariseQueue("", "", dbfile=opt$QUEUEFILE, extended=opt$extended, foghorn=opt$foghorn)

@@ -184,8 +184,8 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
         data.table::setnames(failed, "has_other_issues", "hasOtherIssues")
     }
 
-    failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", oldRcppExports := .grepRcppExportsUpdate(wd, package), by=package]
-    failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", callsRfError := .grepRfError(wd, package), by=package]
+    #failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", oldRcppExports := .grepRcppExportsUpdate(wd, package), by=package]
+    #failed[hasCheckLog==TRUE & hasInstallLog==TRUE & missingPkg=="", callsRfError := .grepRfError(wd, package), by=package]
     
     cat("\nError summary:\n")
     print(failed[, -c(3:4)], nrows=nrow(failed))
