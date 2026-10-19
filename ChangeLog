@@ -1,3 +1,10 @@
+2026-10-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/dequeue.R (dequeueJobs): Use lock on write operations
+
+	* DESCRIPTION (Imports): Add filelock
+	* NAMESPACE: Idem
+
 2026-08-27  Dirk Eddelbuettel  <edd@debian.org>
 
         * DESCRIPTION (Version, Date): Release 0.0.7
