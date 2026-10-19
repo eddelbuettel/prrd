@@ -19,7 +19,7 @@ dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date()
     ## setting repos now in local/setup.R
 
     db <- getQueueFile(package=package, path=directory, date=date)
-    lockfile <- file.path(db, "lock")
+    lockfile <- file.path(db, "lock", fsep=".")
     q <- ensure_queue("jobs", db = db)
 
     con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
