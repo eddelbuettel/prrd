@@ -1,5 +1,7 @@
 2026-10-19  Dirk Eddelbuettel  <edd@debian.org>
 
+	* DESCRIPTION (Version, Date): Roll micro version and date
+
 	* R/dequeue.R (dequeueJobs): Use lock on write operations
 
 	* DESCRIPTION (Imports): Add filelock
