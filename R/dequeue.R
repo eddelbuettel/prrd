@@ -25,7 +25,7 @@ dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date()
     con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
     createTable(con)
     meta <- dbGetQuery(con, "select * from metadata")
-    on.exit( { lock(lockfile); dbDisconnect(con); unlock(lockfile) } )
+    on.exit( { lck <- lock(lockfile); dbDisconnect(con); unlock(lck) } )
 
     pid <- Sys.getpid()
     hostname <- Sys.info()[["nodename"]]
@@ -132,9 +132,9 @@ dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date()
                           host=hostname)
         if (debug) print(row)
 
-        lock(lockfile)
+        lck <- lock(lockfile)
         insertRow(con, row)
-        unlock(lockfile)
+        unlock(lck)
     }
     requeue_failed_messages(q)
     lst <- list_messages(q)
