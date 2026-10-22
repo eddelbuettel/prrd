@@ -63,7 +63,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
     }
     cat("\n")
     if (jobs[status=="READY",.N] > 0) {
-        print(jobs[status=="READY",], nrows=20, topn=10)
+        print(jobs[status=="READY",], nrows=10, topn=5)
     } else {
         cat("None still scheduled\n")
     }

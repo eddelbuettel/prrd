@@ -1,6 +1,8 @@
 2026-10-22  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/db.R: Set write-ahead log, switch timeout setter to pragma
+	* R/dequeue.R: More explicit locking
+	* R/summarise.R: Tighter summary print
 
 2026-10-20  Dirk Eddelbuettel  <edd@debian.org>
 
