@@ -19,7 +19,10 @@ runSanityChecks <- function() {
             stop("Please install xvfb-run-safe (from the scripts/ directory) in the PATH.",
                  call.=FALSE)
         .pkgenv[["xvfb"]] <- "xvfb-run-safe --server-args=\"-screen 0 1024x768x24\""
-    }
+
+	if (Sys.getlocale() == "C")
+	   stop("Please set up proper 'en_US' (or alike) locale", call. = FALSE)
+	}
 
     NULL
 

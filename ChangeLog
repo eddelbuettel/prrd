@@ -1,3 +1,7 @@
+2026-10-20  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/checks.R: Ensure locale is set
+
 2026-10-19  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Roll micro version and date
