@@ -1,3 +1,7 @@
+2026-10-22  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/db.R: Set write-ahead log, switch timeout setter to pragma
+
 2026-10-20  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/checks.R: Ensure locale is set

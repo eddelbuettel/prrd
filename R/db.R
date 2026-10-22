@@ -10,7 +10,10 @@
 ##' @author Dirk Eddelbuettel
 getDatabaseConnection <- function(file) {
     con <- dbConnect(SQLite(), file, synchronous=NULL)
-    RSQLite::sqliteSetBusyHandler(con, 10000)
+    # Change the journal mode to Write-Ahead Logging (WAL) for better performance
+    dbExecute(con, "PRAGMA journal_mode = WAL")
+    # Set a busy timeout (in milliseconds) to prevent concurrent locking errors
+    dbExecute(con, "PRAGMA busy_timeout = 2000")
     con
 }
 
