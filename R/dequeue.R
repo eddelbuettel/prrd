@@ -63,7 +63,7 @@ dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date()
     cat("## Reverse depends check of", blue(meta[1,"package"]), blue(meta[1,"version"]), "\n")
 
     ## work down messages, if any
-    while (!is.null(msg <- try_consume(q))) {
+    while (!is.null(msg <- .tryConsumeLocked(q))) {
         starttime <- Sys.time()
         if (debug) print(msg)
 
@@ -110,15 +110,15 @@ dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date()
         if (rc == 0) {
             good <- good + 1
             cat(green("success"))
-            ack(msg)
+            .ackLocked(msg)
         } else if (rc == 2) {
             skipped <- skipped + 1
             cat(blue("skipped"))
-            ack(msg)
+            .ackLocked(msg)
         } else {
             bad <- bad + 1
             cat(red("failure"))
-            ack(msg)
+            .ackLocked(msg)
         }
         cat("", "at", format(endtime),
             paste0("(",green(good), "/", blue(skipped), "/", red(bad), ")"),
@@ -139,10 +139,8 @@ dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date()
         unlock(lck)
     }
     if (verbose) {
-       lck <- lock(lockfile)
-       requeue_failed_messages(q)
-       lst <- list_messages(q)
-       unlock(lck)
+       .requeueFailedLocked(q)
+       lst <- .listMessagesLocked(q)
        print(lst)
        return(lst)
     }
@@ -152,7 +150,7 @@ dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date()
 ##' @rdname dequeueJobs
 dequeueDepends <- function(package, directory) {
     db <- getQueueFile(package=package, path=directory)
-    q <- ensure_queue("depends", db = db)
+    q <- .ensureLockedQueue("depends", db = db)
 
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
@@ -168,13 +166,13 @@ dequeueDepends <- function(package, directory) {
 
 
     ## work down messages, if any
-    while (!is.null(msg <- try_consume(q))) {
+    while (!is.null(msg <- .tryConsumeLocked(q))) {
         pkg <- msg$message
         try(install.packages(pkg)) # rc is useless
-        ack(msg)
+        .ackLocked(msg)
     }
-    requeue_failed_messages(q)
-    lst <- list_messages(q)
+    .requeueFailedLocked(q)
+    lst <- .listMessagesLocked(q)
     lst
 }
 

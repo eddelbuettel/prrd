@@ -17,6 +17,36 @@ getDatabaseConnection <- function(file) {
     con
 }
 
+.withQueueLock <- function(db, expr) {
+    lck <- lock(file.path(db, "lock", fsep="."))
+    on.exit(unlock(lck))
+    force(expr)
+}
+
+.ensureLockedQueue <- function(name, db) {
+    .withQueueLock(db, ensure_queue(name, db=db))
+}
+
+.publishLocked <- function(queue, title="", message="") {
+    .withQueueLock(queue$db, publish(queue, title=title, message=message))
+}
+
+.tryConsumeLocked <- function(queue) {
+    .withQueueLock(queue$db, try_consume(queue))
+}
+
+.ackLocked <- function(message) {
+    .withQueueLock(message$db, ack(message))
+}
+
+.listMessagesLocked <- function(queue) {
+    .withQueueLock(queue$db, list_messages(queue))
+}
+
+.requeueFailedLocked <- function(queue) {
+    .withQueueLock(queue$db, requeue_failed_messages(queue))
+}
+
 ##' @rdname getDatabaseConnection
 createTable <- function(con) {
     dbExecute(con, "BEGIN EXCLUSIVE")

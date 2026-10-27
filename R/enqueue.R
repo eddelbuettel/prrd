@@ -66,27 +66,29 @@ enqueueJobs <- function(package, directory, dbfile="", addfailed=FALSE) {
     }
     work <- AP[pkgset, on="Package"][,1:2]
     db <- getQueueFile(package=package, path=directory)
-    q <- ensure_queue("jobs", db = db)
+    q <- .ensureLockedQueue("jobs", db = db)
 
     ## next line just to check .libPaths(), not needed here
     #IP <- installed.packages(filters=list())
 
-    con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
-    createRunDataTable(con)
-    dat <- data.frame(package=package,
-                      version=format(packageVersion(package)),
-                      date=format(Sys.Date()))
-    dbWriteTable(con, "metadata", dat, append=TRUE)
-    dbDisconnect(con)
+    .withQueueLock(db, {
+        con <- getDatabaseConnection(db)    # we re-use the liteq db for our results
+        createRunDataTable(con)
+        dat <- data.frame(package=package,
+                          version=format(packageVersion(package)),
+                          date=format(Sys.Date()))
+        dbWriteTable(con, "metadata", dat, append=TRUE)
+        dbDisconnect(con)
+    })
     
     n <- nrow(work)
     for (i in 1:n) {
         ttl <- paste0(work[i,Package])
         msg <- paste(work[i,Package], work[i, Version], sep="_")
-        publish(q, title = ttl, message = msg)
+        .publishLocked(q, title = ttl, message = msg)
     }
 
-    list_messages(q)
+    .listMessagesLocked(q)
 }
 
 ##' @rdname enqueueJobs
@@ -120,16 +122,16 @@ enqueueDepends <- function(package, directory) {
     needed <- setdiff(deppkg, IP[, "Package"])
 
     db <- getQueueFile(package=package, path=directory)
-    q <- ensure_queue("depends", db = db)
+    q <- .ensureLockedQueue("depends", db = db)
 
     n <- length(needed)
     for (i in 1:n) {
         ttl <- paste0(needed[i])
         msg <- paste(needed[i])
-        publish(q, title = ttl, message = msg)
+        .publishLocked(q, title = ttl, message = msg)
     }
 
-    list_messages(q)
+    .listMessagesLocked(q)
 }
 
 globalVariables(c("Package", "Version")) # pacify R CMD check
