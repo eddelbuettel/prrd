@@ -1,3 +1,10 @@
+2026-11-06  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/db.R: Adopt approach from liteq to use 'BEGIN IMMEDIATE' blocks
+	for locked operations, together with two wrappers gratefully borrows
+	* R/db.R: Added variants of the reader/writer functions that use the
+	new sqlite-internal locking approach
+
 2026-10-22  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/db.R: Set write-ahead log, switch timeout setter to pragma
