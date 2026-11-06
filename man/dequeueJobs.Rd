@@ -21,6 +21,7 @@ file, default is current date.}
 }
 \value{
 A queue is create as a side effect, its elements are returned invisibly
+in verbose mode only.
 }
 \description{
 Dequeue package for (potentially parallel) reverse-dependency check

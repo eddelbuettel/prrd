@@ -13,10 +13,11 @@ runSanityChecks()
 
 runEnqueueSanityChecks()
 
-getDataDirectory(package, date = format(Sys.Date()), path = ".",
-  sep = "_")
+getDataDirectory(package, date = format(Sys.Date()),
+  path = getOption("prrd.queue_directory", "."), sep = "_")
 
-getQueueFile(package, date = format(Sys.Date()), path = ".", sep = "_")
+getQueueFile(package, date = format(Sys.Date()),
+  path = getOption("prrd.queue_directory", "."), sep = "_")
 
 getConfig(debug = FALSE)
 
@@ -28,7 +29,7 @@ getExclusionSet(exclusionfile)
 \item{date}{Optional character variable describing a date, default
 is current date.}
 
-\item{path}{Optional path, default is current directory.}
+\item{path}{Optional path, default is option value or current directory.}
 
 \item{sep}{Optional character with component separator, default is \dQuote{_}.}
 

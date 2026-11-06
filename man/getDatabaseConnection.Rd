@@ -5,6 +5,12 @@
 \alias{createTable}
 \alias{insertRow}
 \alias{createRunDataTable}
+\alias{dbWithWriteTransaction}
+\alias{dbExecuteLocked}
+\alias{dbGetQueryWrapped}
+\alias{createTableLocked}
+\alias{insertRowLocked}
+\alias{createRunDataTableLocked}
 \title{Database Helper Functions}
 \usage{
 getDatabaseConnection(file)
@@ -14,6 +20,18 @@ createTable(con)
 insertRow(con, df)
 
 createRunDataTable(con)
+
+dbWithWriteTransaction(con, code, retry = TRUE)
+
+dbExecuteLocked(file, code, ...)
+
+dbGetQueryWrapped(file, code)
+
+createTableLocked(file)
+
+insertRowLocked(file, df)
+
+createRunDataTableLocked(file)
 }
 \arguments{
 \item{file}{A character variable pointing to a sqlite3 file}
@@ -21,6 +39,12 @@ createRunDataTable(con)
 \item{con}{A database connection object}
 
 \item{df}{A one-row data.frame with results to be appended}
+
+\item{code}{Exression to be executed}
+
+\item{retry}{Boolean value, defaults to \sQuote{TRUE}}
+
+\item{...}{Additional parameters, currently unused}
 }
 \value{
 A connection object
