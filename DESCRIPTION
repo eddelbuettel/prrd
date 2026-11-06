@@ -6,7 +6,10 @@ Date: 2026-11-06
 Authors@R: person("Dirk", "Eddelbuettel", role = c("aut", "cre"), email = "edd@debian.org",
                   comment = c(ORCID = "0000-0001-6419-907X"))
 Description: Reverse depends for a given package are queued such that multiple
- workers can run the reverse-dependency tests in parallel.
+ workers can run the reverse-dependency tests in parallel where operations are
+ robust to concurrent workers writing. Work queue management is provided by
+ package 'liteq' from which an approach for dealing with concurrent 'sqlite'
+ writes is also borrowed.
 License: GPL (>= 2)
 Imports: config, liteq, data.table, crayon, DBI, RSQLite
 Suggests: docopt, foghorn, anytime

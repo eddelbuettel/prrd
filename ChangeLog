@@ -21,6 +21,9 @@
 	* DESCRIPTION (Imports): No longer import 'filelock'
 	* NAMESPACE: Idem
 
+	* DESCRIPTION (Description): Expand text, mention 'liteq' for queue
+	management and acknowledge sqlite parallel writers locking approach used
+
 2026-10-22  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/db.R: Set write-ahead log, switch timeout setter to pragma
