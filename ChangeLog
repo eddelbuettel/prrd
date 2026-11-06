@@ -13,6 +13,8 @@
 	* man/getDataDirectory.Rd: Idem
 	* man/getDatabaseConnection.Rd: Idem
 	* man/dbLock.Rd: New help page
+	* DESCRIPTION (Imports): No longer import 'filelock'
+	* NAMESPACE: Idem
 
 2026-10-22  Dirk Eddelbuettel  <edd@debian.org>
 

@@ -8,7 +8,7 @@ Authors@R: person("Dirk", "Eddelbuettel", role = c("aut", "cre"), email = "edd@d
 Description: Reverse depends for a given package are queued such that multiple
  workers can run the reverse-dependency tests in parallel.
 License: GPL (>= 2)
-Imports: config, liteq, data.table, crayon, DBI, RSQLite, filelock
+Imports: config, liteq, data.table, crayon, DBI, RSQLite
 Suggests: docopt, foghorn, anytime
 URL: https://github.com/eddelbuettel/prrd, https://dirk.eddelbuettel.com/code/prrd.html
 BugReports: https://github.com/eddelbuettel/prrd/issues
