@@ -1,5 +1,7 @@
 2026-11-06  Dirk Eddelbuettel  <edd@debian.org>
 
+	* DESCRIPTION (Version, Date): Roll micro version and date
+
 	* R/db.R: Adopt approach from liteq to use 'BEGIN IMMEDIATE' blocks
 	for locked operations, together with two wrappers gratefully borrows
 	* R/db.R: Added variants of the reader/writer functions that use the
@@ -9,10 +11,12 @@
 	* R/enqueue.R: If needed, create two directories recursively
 	* R/utils.R: Small improvement in how default data / queue directory
 	value is retrieved
+
 	* man/dequeueJobs.Rd: Update help page
 	* man/getDataDirectory.Rd: Idem
 	* man/getDatabaseConnection.Rd: Idem
 	* man/dbLock.Rd: New help page
+
 	* DESCRIPTION (Imports): No longer import 'filelock'
 	* NAMESPACE: Idem
 
