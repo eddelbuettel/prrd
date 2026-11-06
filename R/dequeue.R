@@ -20,14 +20,9 @@ dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date()
     ## setting repos now in local/setup.R
 
     db <- getQueueFile(package=package, path=directory, date=date)
-    lockfile <- file.path(db, "lock", fsep=".")
-    lck <- lock(lockfile)
     q <- ensure_queue("jobs", db = db)
-    con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
-    on.exit(dbDisconnect(con))
-    createTable(con)
-    meta <- dbGetQuery(con, "select * from metadata")
-    unlock(lck)
+    createTableLocked(db)
+    meta <- dbGetQueryWrapped(db, "select * from metadata")
 
     pid <- Sys.getpid()
     hostname <- Sys.info()[["nodename"]]
@@ -133,18 +128,11 @@ dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date()
                           runner=pid,
                           host=hostname)
         if (debug) print(row)
-
-        lck <- lock(lockfile)
-        insertRow(con, row)
-        unlock(lck)
+        insertRowLocked(db, row)
     }
     if (verbose) {
-       lck <- lock(lockfile)
        requeue_failed_messages(q)
        lst <- list_messages(q)
-       unlock(lck)
-       print(lst)
-       return(lst)
     }
     NULL
 }

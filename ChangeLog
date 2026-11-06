@@ -4,6 +4,8 @@
 	for locked operations, together with two wrappers gratefully borrows
 	* R/db.R: Added variants of the reader/writer functions that use the
 	new sqlite-internal locking approach
+	* R/dequeue.R (dequeueJobs): Use new locking approach for two write
+	operations
 
 2026-10-22  Dirk Eddelbuettel  <edd@debian.org>
 
