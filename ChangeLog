@@ -6,6 +6,8 @@
 	new sqlite-internal locking approach
 	* R/dequeue.R (dequeueJobs): Use new locking approach for two write
 	operations
+	* R/utils.R: Small improvement in how default data / queue directory
+	value is retrieved
 
 2026-10-22  Dirk Eddelbuettel  <edd@debian.org>
 

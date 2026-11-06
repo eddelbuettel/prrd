@@ -29,7 +29,7 @@
 ##' @param package Character variable providing the package name.
 ##' @param date Optional character variable describing a date, default
 ##'  is current date.
-##' @param path Optional path, default is current directory.
+##' @param path Optional path, default is option value or current directory.
 ##' @param sep Optional character with component separator, default is \dQuote{_}.
 ##' @param debug Optional boolean
 ##' @param exclusionfile Character variable with path and file for an optional
@@ -40,16 +40,18 @@
 ##' by \code{runSanityChecks} which is invoked for its side effect of validation (currently only
 ##' if \code{run-xvfb-safe} is in the PATH).
 ##' @author Dirk Eddelbuettel
-getDataDirectory <- function(package, date=format(Sys.Date()), path=".", sep="_") {
+getDataDirectory <- function(package, date = format(Sys.Date()),
+                             path = getOption("prrd.queue_directory", "."), sep = "_") {
     dir <- file.path(path, paste(package, date, sep=sep))
     if (!dir.exists(dir)) {
-        if (!dir.create(dir)) stop("Cannot create ", dir, call.=FALSE)
+        if (!dir.create(dir, recursive = TRUE)) stop("Cannot create ", dir, call.=FALSE)
     }
     dir
 }
 
 ##' @rdname getDataDirectory
-getQueueFile <- function(package, date=format(Sys.Date()), path=".", sep="_" ) {
+getQueueFile <- function(package, date = format(Sys.Date()),
+                         path = getOption("prrd.queue_directory", "."), sep = "_" ) {
     dir <- getDataDirectory(package, date, path, sep)
     queue <- file.path(dir, "queuefile.sqlite")
     queue
