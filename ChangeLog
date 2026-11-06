@@ -8,7 +8,8 @@
 	new sqlite-internal locking approach
 	* R/dequeue.R (dequeueJobs): Use new locking approach for two write
 	operations
-	* R/enqueue.R: If needed, create two directories recursively
+	* R/enqueue.R: If needed, create two directories recursively; use new
+	locked functions
 	* R/utils.R: Small improvement in how default data / queue directory
 	value is retrieved
 

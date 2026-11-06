@@ -163,3 +163,16 @@ insertRowLocked <- function(file, df) {
 createRunDataTableLocked <- function(file) {
     dbExecuteLocked(file, .createRunDataSQL)
 }
+
+##' @rdname getDatabaseConnection
+##' @param table Character value with the database table to write to
+##' @param append Boolean value whether to append to table or not, depends to \sQuote{FALSE}
+##' @param overwrite Boolean value whether to overwrite table or not, depends to \sQuote{TRUE}
+dbWriteTableLocked <- function(file, table, df, append=FALSE, overwrite=TRUE) {
+    con <- getDatabaseConnection(file)
+    on.exit(dbDisconnect(con))
+    dbWithWriteTransaction(con,
+                           dbWriteTable(con, table, df, append=append, overwrite=overwrite),
+                           retry = TRUE)
+    NULL
+}

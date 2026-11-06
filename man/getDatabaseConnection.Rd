@@ -11,6 +11,7 @@
 \alias{createTableLocked}
 \alias{insertRowLocked}
 \alias{createRunDataTableLocked}
+\alias{dbWriteTableLocked}
 \title{Database Helper Functions}
 \usage{
 getDatabaseConnection(file)
@@ -32,6 +33,8 @@ createTableLocked(file)
 insertRowLocked(file, df)
 
 createRunDataTableLocked(file)
+
+dbWriteTableLocked(file, table, df, append = FALSE, overwrite = TRUE)
 }
 \arguments{
 \item{file}{A character variable pointing to a sqlite3 file}
@@ -45,6 +48,12 @@ createRunDataTableLocked(file)
 \item{retry}{Boolean value, defaults to \sQuote{TRUE}}
 
 \item{...}{Additional parameters, currently unused}
+
+\item{table}{Character value with the database table to write to}
+
+\item{append}{Boolean value whether to append to table or not, depends to \sQuote{FALSE}}
+
+\item{overwrite}{Boolean value whether to overwrite table or not, depends to \sQuote{TRUE}}
 }
 \value{
 A connection object

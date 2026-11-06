@@ -33,14 +33,8 @@ enqueueJobs <- function(package, directory, dbfile="", addfailed=FALSE) {
     runEnqueueSanityChecks()              # currenly repos only
 
     if (dbfile != "") {
-        if (file.exists(dbfile)) {
-            db <- dbfile
-        } else {
-            stop("No file ", dbfile, " found\n", call. = FALSE)
-        }
-        con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
-        res <- setDT(dbGetQuery(con, "select * from results"))
-        dbDisconnect(con)
+        if (!file.exists(dbfile)) stop("No file ", dbfile, " found\n", call. = FALSE)
+        res <- setDT(dbGetQueryWrapped(dbfile, "select * from results"))
     }
 
     ## available package at CRAN and/or elsewhere
@@ -71,14 +65,12 @@ enqueueJobs <- function(package, directory, dbfile="", addfailed=FALSE) {
     ## next line just to check .libPaths(), not needed here
     #IP <- installed.packages(filters=list())
 
-    con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
-    createRunDataTable(con)
+    createRunDataTableLocked(db)		# we re-use the liteq db for our results
     dat <- data.frame(package=package,
                       version=format(packageVersion(package)),
                       date=format(Sys.Date()))
-    dbWriteTable(con, "metadata", dat, append=TRUE)
-    dbDisconnect(con)
-    
+    dbWriteTableLocked(db, "metadata", dat, append=TRUE, overwrite=FALSE) # consider append=FALSE, overwrite=TRUE?
+
     n <- nrow(work)
     for (i in 1:n) {
         ttl <- paste0(work[i,Package])
