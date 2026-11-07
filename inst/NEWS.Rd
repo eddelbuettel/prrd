@@ -3,6 +3,15 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/prrd/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/prrd/issues/#1}{##1}}
 
+\section{Changes in prrd version 0.1.0 [unreleased] (2026-11-xx)}{
+  \itemize{
+    \item Concurrent operations are now supported via updated sqlite
+    semantics borrowed with appreciation from \pkg{liteq}
+    \item This follows an interim solution relying on \pkg{filelock} use;
+    however this later package is not needed so no increase in dependencies 
+  }
+}
+
 \section{Changes in prrd version 0.0.7 (2026-08-27)}{
   \itemize{
     \item Updates to DESCRIPTION have been made as CRAN requirements change
