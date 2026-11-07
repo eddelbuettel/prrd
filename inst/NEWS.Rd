@@ -3,7 +3,7 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/prrd/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/prrd/issues/#1}{##1}}
 
-\section{Changes in prrd version 0.1.0 [unreleased] (2026-11-xx)}{
+\section{Changes in prrd version 0.1.0 (2026-11-07)}{
   \itemize{
     \item Concurrent operations are now supported via updated sqlite
     semantics borrowed with appreciation from \pkg{liteq}

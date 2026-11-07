@@ -14,10 +14,10 @@ network system are of consistently high quality and tend to "Just Work".  One of
 for this is a good culture of "do not break other packages" which is controlled for / enacted by the
 CRAN maintainers. Package maintainers are expected to do their part---by checking their packages!
 
-To take one example, [Rcpp](http://dirk.eddelbuettel.com/code/rcpp.html) is package with a pretty
-large tail of dependencies: as of this writing in late 2017, about 1270 other packages use it.  So
-1270 other packages need to be tested.  This takes time, especially when running serially.  But it
-is easy to parallelise.
+To take one example, [Rcpp](https://dirk.eddelbuettel.com/code/rcpp.html) is package with a pretty
+large tail of dependencies: as of this (updated) writing in late 2026, over 3400 other packages use
+it.  So over 3400 other packages need to be tested.  This takes time, especially when running
+serially.  But it is easy to parallelise.
 
 ### How
 
@@ -63,22 +63,24 @@ resource level of the machine.
 ### Performance 
 
 To illustrate, "wall time" for a reverse-dependecy check of
-[Rcpp](http://dirk.eddelbuettel.com/code/rcpp.html) decreased from 14.91 hours to 3.75 hours (or
+[Rcpp](https://dirk.eddelbuettel.com/code/rcpp.html) decreased from 14.91 hours to 3.75 hours (or
 almost four-fold) using six workers. An earlier run of
-[RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html) decreased from 5.87 hours to
+[RcppArmadillo](https://dirk.eddelbuettel.com/code/rcpp.armadillo.html) decreased from 5.87 hours to
 1.92 hours (or just over three-fold) using four workers, and to 1.29 hours (or by 4.5) using six
 workers (and a fresh `ccache`, see
 [here](https://dirk.eddelbuettel.com/blog/2017/11/27/) for its
 impact).  In all cases the machine which was used was generally not idle.
 
 The following screenshot shows a run for
-[RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html) with six workers. It shows
+[RcppArmadillo](https://dirk.eddelbuettel.com/code/rcpp.armadillo.html) with six workers. It shows
 the successes in green, skipped jobs in blue (from packages which sometimes would result in runaway tests), and no failures (which would be shown in red).
 
 ![](https://github.com/eddelbuettel/prrd/raw/master/local/screenshot_prrd_rcpparmadillo.png)
 
 The split screen and additional tables are thanks to the wonderful
 [byobu](https://byobu.org) wrapper around [tmux](https://github.com/tmux/tmux).
+
+We now regularly run on a larger 16-core machine running 18 workers in parallel.
 
 ### Configuration
 
