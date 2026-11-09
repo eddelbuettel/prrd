@@ -1,5 +1,7 @@
 2026-11-09  Dirk Eddelbuettel  <edd@debian.org>
 
+	* DESCRIPTION (Version, Date): Roll micro version and date
+	
 	* R/dequeue.R (dequeueJobs): New argument skipexclude to not consider
 	the exclusion list
 	* inst/scripts/dequeueJobs.r: Idem
