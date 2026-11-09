@@ -7,13 +7,16 @@
 ##' @title Dequeue and run reverse-dependency checks, possibly in parallel
 ##' @param package A character variable denoting a package
 ##' @param directory A character variable denoting a directory for the queuefile
-##' @param exclude An optional character variable denoting an exclusion set csv file.
+##' @param exclude An optional character variable denoting an exclusion set csv file
 ##' @param date Optional character variable describing a date (as part of the queue
 ##' file, default is current date.
+##' @param skipexclude A boolean switch whether to skip exclusion list, default is
+##' \sQuote{FALSE}
 ##' @return A queue is create as a side effect, its elements are returned invisibly
 ##' in verbose mode only.
 ##' @author Dirk Eddelbuettel
-dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date())) {
+dequeueJobs <- function(package, directory, exclude = NULL, date = format(Sys.Date()),
+                        skipexclude = FALSE) {
 
     runSanityChecks()                       # (currently) checks (only) for xvfb-run-safe
 
@@ -52,7 +55,7 @@ dequeueJobs <- function(package, directory, exclude=NULL, date=format(Sys.Date()
     }
 
     good <- bad <- skipped <- 0
-    exclset <- if (!is.null(exclude)) getExclusionSet(exclude) else character()
+    exclset <- if (!is.null(exclude) && !skipexclude) getExclusionSet(exclude) else character()
     if (verbose) print(exclset)
 
     cat("## Reverse depends check of", blue(meta[1,"package"]), blue(meta[1,"version"]), "\n")

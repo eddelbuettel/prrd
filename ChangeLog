@@ -1,3 +1,10 @@
+2026-11-09  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/dequeue.R (dequeueJobs): New argument skipexclude to not consider
+	the exclusion list
+	* inst/scripts/dequeueJobs.r: Idem
+	* man/dequeue.Rd: Documentation on skipexclude
+
 2026-11-07  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Release 0.1.0

@@ -5,7 +5,8 @@
 \alias{dequeueDepends}
 \title{Dequeue and run reverse-dependency checks, possibly in parallel}
 \usage{
-dequeueJobs(package, directory, exclude = NULL, date = format(Sys.Date()))
+dequeueJobs(package, directory, exclude = NULL, date = format(Sys.Date()),
+  skipexclude = FALSE)
 
 dequeueDepends(package, directory)
 }
@@ -14,10 +15,13 @@ dequeueDepends(package, directory)
 
 \item{directory}{A character variable denoting a directory for the queuefile}
 
-\item{exclude}{An optional character variable denoting an exclusion set csv file.}
+\item{exclude}{An optional character variable denoting an exclusion set csv file}
 
 \item{date}{Optional character variable describing a date (as part of the queue
 file, default is current date.}
+
+\item{skipexclude}{A boolean switch whether to skip exclusion list, default is
+\sQuote{FALSE}}
 }
 \value{
 A queue is create as a side effect, its elements are returned invisibly
