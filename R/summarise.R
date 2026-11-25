@@ -137,13 +137,13 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
 }
 
 .runExtended <- function(res, foghorn=FALSE) {
-
+    wd <- getwd() 	# fallback default
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
         if ("workdir" %in% names(cfg)) {
             wd <- cfg$workdir
             if (!dir.exists(wd)) {
-                dir.create(wd)
+                dir.create(wd, recursive = TRUE)
             }
         }
         if ("libdir" %in% names(cfg)) {
