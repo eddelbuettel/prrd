@@ -6,9 +6,6 @@ on:
   push:
   pull_request:
 
-env:
-  _R_CHECK_FORCE_SUGGESTS_: "false"
-
 jobs:
   ci:
     strategy:
@@ -20,18 +17,19 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout 
-        uses: actions/checkout@v7
-
       - name: Setup
-        uses: eddelbuettel/github-actions/r-ci@master
+        uses: eddelbuettel/github-actions/r-ci-co@master
 
       - name: Dependencies
         run: ./run.sh install_all
 
       - name: Test
         run: ./run.sh run_tests
-
+        
+      #- name: Logs
+      #  run: ./run.sh dump_logs
+      #  if: failure()
+      
       #- name: Coverage
       #  if: ${{ matrix.os == 'ubuntu-latest' }}
       #  run: ./run.sh coverage
