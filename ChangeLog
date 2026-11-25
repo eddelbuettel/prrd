@@ -1,5 +1,7 @@
 2026-11-25  Dirk Eddelbuettel  <edd@debian.org>
 
+	* R/enqueue.R (enqueueJobs, enqueueDepends): Use 'seq_len(n)' loop
+
 	* .github/workflows/ci.yaml (jobs): Switch (temporarily) to r-ci-co
 	for additional tests, added commented-out logs dumper
 

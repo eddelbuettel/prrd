@@ -72,7 +72,7 @@ enqueueJobs <- function(package, directory, dbfile="", addfailed=FALSE) {
     dbWriteTableLocked(db, "metadata", dat, append=TRUE, overwrite=FALSE) # consider append=FALSE, overwrite=TRUE?
 
     n <- nrow(work)
-    for (i in 1:n) {
+    for (i in seq_len(n)) {
         ttl <- paste0(work[i,Package])
         msg <- paste(work[i,Package], work[i, Version], sep="_")
         publish(q, title = ttl, message = msg)
@@ -115,7 +115,7 @@ enqueueDepends <- function(package, directory) {
     q <- ensure_queue("depends", db = db)
 
     n <- length(needed)
-    for (i in 1:n) {
+    for (i in seq_len(n)) {
         ttl <- paste0(needed[i])
         msg <- paste(needed[i])
         publish(q, title = ttl, message = msg)
