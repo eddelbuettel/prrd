@@ -1,3 +1,8 @@
+2026-11-26  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/summarise.R (summariseQueue): Protect against results table not
+	being created yet
+
 2026-11-25  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/summarise.R (.runExtended): Define 'wd' with fallback default

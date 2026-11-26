@@ -24,6 +24,12 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
         db <- getQueueFile(package=package, path=directory)
     }
     con <- getDatabaseConnection(db)        # we re-use the liteq db for our results
+
+    if (isFALSE("results" %in% DBI::dbListTables(con))) {
+        dbDisconnect(con)
+       return(invisible(data.table()))
+    }
+
     res <- setDT(dbGetQuery(con, "select * from results"))
     jobs <- setDT(dbGetQuery(con, "select * from qqjobs"))
     meta <- dbGetQuery(con, "select * from metadata")
