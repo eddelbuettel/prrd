@@ -1,7 +1,7 @@
 2026-11-26  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/summarise.R (summariseQueue): Protect against results table not
-	being created yet
+	* R/enqueue.R (enqueueJobs): Create results table as well
+	* R/dequeue.R (dequeueJobs): Do not create results table here
 
 2026-11-25  Dirk Eddelbuettel  <edd@debian.org>
 

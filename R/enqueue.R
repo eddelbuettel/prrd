@@ -66,6 +66,7 @@ enqueueJobs <- function(package, directory, dbfile="", addfailed=FALSE) {
     #IP <- installed.packages(filters=list())
 
     createRunDataTableLocked(db)		# we re-use the liteq db for our results
+    createTableLocked(db)                       # and also create the results table now
     dat <- data.frame(package=package,
                       version=format(packageVersion(package)),
                       date=format(Sys.Date()))

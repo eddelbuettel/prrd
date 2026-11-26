@@ -24,7 +24,6 @@ dequeueJobs <- function(package, directory, exclude = NULL, date = format(Sys.Da
 
     db <- getQueueFile(package=package, path=directory, date=date)
     q <- ensure_queue("jobs", db = db)
-    createTableLocked(db)
     meta <- dbGetQueryWrapped(db, "select * from metadata")
 
     pid <- Sys.getpid()
