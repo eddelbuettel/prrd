@@ -81,24 +81,32 @@ dequeueJobs <- function(package, directory, exclude = NULL, date = format(Sys.Da
                 if (verbose) cat("Seeing file", pkgfile, "\n")
             } else {
                 dl <- download.packages(tok[1], ".", quiet=TRUE)
-                pkgfile <- basename(dl[,2])
-                if (verbose) cat("Downloaded ", pkgfile, "\n")
+                if (is.null(dl)) {
+                    cat("Error downloading ", pkgfile, " so skipping\n")
+                    rc <- 2
+                    pkgfile <- NULL
+                } else {
+                    pkgfile <- basename(dl[,2])
+                    if (verbose) cat("Downloaded ", pkgfile, "\n")
+                }
             }
 
-            cmd <- "R"
-            args <- c("CMD", "check", "--no-manual", "--no-vignettes", pkgfile)
-            if (.pkgenv[["xvfb"]] != "") {
-                splits <- strsplit(.pkgenv[["xvfb"]], " ")[[1]]
-                args <- c(splits[-1], cmd, args)
-                cmd <- splits[1]
+            if (!is.null(pkgfile)) {
+                cmd <- "R"
+                args <- c("CMD", "check", "--no-manual", "--no-vignettes", pkgfile)
+                if (.pkgenv[["xvfb"]] != "") {
+                    splits <- strsplit(.pkgenv[["xvfb"]], " ")[[1]]
+                    args <- c(splits[-1], cmd, args)
+                    cmd <- splits[1]
+                }
+                logfile <- paste0(pkgfile, ".log")
+                if (debug) {
+                    print(cmd)
+                    print(args)
+                }
+                rc <- system2(cmd, args=args, env=env, stdout=logfile, stderr=logfile)
+                if (debug) print(rc)
             }
-            logfile <- paste0(pkgfile, ".log")
-            if (debug) {
-                print(cmd)
-                print(args)
-            }
-            rc <- system2(cmd, args=args, env=env, stdout=logfile, stderr=logfile)
-            if (debug) print(rc)
 
             setwd(cwd)
         }
