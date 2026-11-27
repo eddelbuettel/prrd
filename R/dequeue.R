@@ -132,11 +132,9 @@ dequeueJobs <- function(package, directory, exclude = NULL, date = format(Sys.Da
         if (debug) print(row)
         insertRowLocked(db, row)
     }
-    if (verbose) {
-       requeue_failed_messages(q)
-       lst <- list_messages(q)
-    }
-    NULL
+    requeue_failed_messages(q) # there is no default 'pickup' of requeues messages though
+    lst <- list_messages(q)
+    lst
 }
 
 ##' @rdname dequeueJobs

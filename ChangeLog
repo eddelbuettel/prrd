@@ -1,5 +1,7 @@
 2026-11-27  Dirk Eddelbuettel  <edd@debian.org>
 
+	* R/dequeue.R (dequeueJobs): Revert to always requeue failed messages
+	but clarify in comment that there is no default requeue consumption
 	* inst/scripts/enqueueJobs.r: Correct typo in docopt text
 
 2026-11-26  Dirk Eddelbuettel  <edd@debian.org>
