@@ -1,7 +1,7 @@
 #!/usr/bin/env r
 
 ## configuration for docopt
-doc <- paste0("[Usage: enqueueJobs.r [-q QUEUE] [-d DBFILE] [-a] [-h] [-x] PACKAGE
+doc <- paste0("Usage: enqueueJobs.r [-q QUEUE] [-d DBFILE] [-a] [-h] [-x] PACKAGE
 
 -q --queue QUEUE      set queue directory [default: ", getOption("prrd.queue_directory", "."), "]
 -d --dbfile DBFILE    set database for prior run, used new packages only [default: ]
