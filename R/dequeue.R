@@ -76,6 +76,7 @@ dequeueJobs <- function(package, directory, exclude = NULL, date = format(Sys.Da
 
             ## deal with exclusion set here or in enqueue ?
             setwd(wd)
+            on.exit(setwd(cwd), add = TRUE)
 
             if (file.exists(pkgfile)) {
                 if (verbose) cat("Seeing file", pkgfile, "\n")
@@ -107,8 +108,6 @@ dequeueJobs <- function(package, directory, exclude = NULL, date = format(Sys.Da
                 rc <- system2(cmd, args=args, env=env, stdout=logfile, stderr=logfile)
                 if (debug) print(rc)
             }
-
-            setwd(cwd)
         }
         endtime <- Sys.time()
 

@@ -1,3 +1,7 @@
+2026-11-28  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/dequeue.R (dequeueJobs): Call 'return' setwd() via on.exit()
+
 2026-11-27  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/dequeue.R (dequeueJobs): Make processing robust to download error;
