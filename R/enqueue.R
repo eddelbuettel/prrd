@@ -25,7 +25,7 @@ enqueueJobs <- function(package, directory, dbfile="", addfailed=FALSE) {
             .libPaths(fullLibDir)
             Sys.setenv("R_LIBS_USER"=fullLibDir)
             if (!dir.exists(fullLibDir)) {
-                dir.create(fullLibDir, recursive = TRUE)
+                dir.create(fullLibDir, recursive = TRUE, showWarnings = FALSE)
             }
         }
     }

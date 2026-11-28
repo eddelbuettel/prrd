@@ -44,7 +44,8 @@ getDataDirectory <- function(package, date = format(Sys.Date()),
                              path = getOption("prrd.queue_directory", "."), sep = "_") {
     dir <- file.path(path, paste(package, date, sep=sep))
     if (!dir.exists(dir)) {
-        if (!dir.create(dir, recursive = TRUE)) stop("Cannot create ", dir, call.=FALSE)
+        if (!dir.create(dir, recursive = TRUE, showWarnings = FALSE))
+            stop("Cannot create ", dir, call.=FALSE)
     }
     dir
 }

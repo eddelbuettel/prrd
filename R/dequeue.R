@@ -37,7 +37,7 @@ dequeueJobs <- function(package, directory, exclude = NULL, date = format(Sys.Da
         if ("workdir" %in% names(cfg)) {
             wd <- cfg$workdir
             if (!dir.exists(wd)) {
-                dir.create(wd)
+                dir.create(wd, recursive = TRUE, showWarnings = FALSE)
             }
         }
         if ("libdir" %in% names(cfg)) {
@@ -45,7 +45,7 @@ dequeueJobs <- function(package, directory, exclude = NULL, date = format(Sys.Da
             fullLibDir <- normalizePath(cfg$libdir)
             Sys.setenv("R_LIBS_USER"=fullLibDir)
             if (!dir.exists(fullLibDir)) {
-                dir.create(fullLibDir)
+                dir.create(fullLibDir, recursive = TRUE, showWarnings = FALSE)
             }
             env <- paste0("R_LIBS=\"", fullLibDir, "\"")
         }
@@ -156,7 +156,7 @@ dequeueDepends <- function(package, directory) {
             .libPaths(fullLibDir)
             Sys.setenv("R_LIBS_USER"=fullLibDir)
             if (!dir.exists(fullLibDir)) {
-                dir.create(fullLibDir)
+                dir.create(fullLibDir, recursive = TRUE, showWarnings = FALSE)
             }
         }
     }
