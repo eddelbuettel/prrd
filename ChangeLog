@@ -1,5 +1,10 @@
 2026-11-28  Dirk Eddelbuettel  <edd@debian.org>
 
+	* R/summarise.R (.runExtended): Add addFailed = FALSE to
+	normalizePath()
+	* R/dequeue.R (dequeueJobs,dequeueDepends): Idem
+	* R/enqueue.R (enqueueJobs,enqueueDepends): Idem
+
 	* R/summarise.R (.runExtended): dir.create() with recursive = TRUE
 	* R/utils.R (getDataDirectory): Idem
 	* R/enqueue.R (enqueueJobs,enqueueDepends): Idem

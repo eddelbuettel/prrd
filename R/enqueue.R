@@ -21,7 +21,7 @@ enqueueJobs <- function(package, directory, dbfile="", addfailed=FALSE) {
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
         if ("libdir" %in% names(cfg)) {
-            fullLibDir <- normalizePath(cfg$libdir)
+            fullLibDir <- normalizePath(cfg$libdir, mustWork = FALSE)
             .libPaths(fullLibDir)
             Sys.setenv("R_LIBS_USER"=fullLibDir)
             if (!dir.exists(fullLibDir)) {
@@ -87,7 +87,7 @@ enqueueDepends <- function(package, directory) {
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
         if ("libdir" %in% names(cfg)) {
-            fullLibDir <- normalizePath(cfg$libdir)
+            fullLibDir <- normalizePath(cfg$libdir, mustWork = FALSE)
             .libPaths(fullLibDir)
             Sys.setenv("R_LIBS_USER"=fullLibDir)
             if (!dir.exists(fullLibDir)) {

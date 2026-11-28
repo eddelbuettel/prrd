@@ -42,7 +42,7 @@ dequeueJobs <- function(package, directory, exclude = NULL, date = format(Sys.Da
         }
         if ("libdir" %in% names(cfg)) {
             ## setting the environment variable works with littler, but not with RScript
-            fullLibDir <- normalizePath(cfg$libdir)
+            fullLibDir <- normalizePath(cfg$libdir, mustWork = FALSE)
             Sys.setenv("R_LIBS_USER"=fullLibDir)
             if (!dir.exists(fullLibDir)) {
                 dir.create(fullLibDir, recursive = TRUE, showWarnings = FALSE)
@@ -152,7 +152,7 @@ dequeueDepends <- function(package, directory) {
     if (!is.null(cfg <- getConfig())) {
         if ("setup" %in% names(cfg)) source(cfg$setup)
         if ("libdir" %in% names(cfg)) {
-            fullLibDir <- normalizePath(cfg$libdir)
+            fullLibDir <- normalizePath(cfg$libdir, mustWork = FALSE)
             .libPaths(fullLibDir)
             Sys.setenv("R_LIBS_USER"=fullLibDir)
             if (!dir.exists(fullLibDir)) {

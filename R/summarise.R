@@ -148,7 +148,7 @@ summariseQueue <- function(package, directory, dbfile="", extended=FALSE, foghor
         }
         if ("libdir" %in% names(cfg)) {
             ## setting the environment variable works with littler, but not with RScript
-            fullLibDir <- normalizePath(cfg$libdir)
+            fullLibDir <- normalizePath(cfg$libdir, mustWork = FALSE)
             Sys.setenv("R_LIBS_USER"=fullLibDir)
             if (!dir.exists(fullLibDir)) {
                 dir.create(fullLibDir, recursive = TRUE, showWarnings = FALSE)
